@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PUBG Battle – Admin Panel</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#FFD234;--orange:#FF6B00;--red:#FF2D55;--green:#00E676;--blue:#4361EE;
+  --dark:#080C10;--dark2:#0D1117;--card:#111820;--card2:#161E28;
+  --border:#1E2D3D;--text:#E8EDF2;--muted:#6B7B8D;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;}
+
+/* LOGIN */
+.login-screen{position:fixed;inset:0;background:var(–dark);z-index:9999;
+display:flex;align-items:center;justify-content:center;padding:24px;}
+.login-box{background:var(–card);border:1px solid var(–border);border-radius:10px;
+padding:40px;width:100%;max-width:400px;}
+.login-logo{font-family:‘Teko’,sans-serif;font-size:1.8rem;font-weight:700;letter-spacing:3px;
+background:linear-gradient(135deg,var(–gold),var(–orange));-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px;}
+.login-sub{font-size:.8rem;color:var(–muted);margin-bottom:28px;letter-spacing:1px;text-transform:uppercase;}
+.msg-box{border-radius:4px;padding:12px 14px;font-size:.85rem;margin-bottom:14px;display:none;}
+.msg-error{background:rgba(255,45,85,.08);border:1px solid rgba(255,45,85,.2);color:var(–red);}
+.msg-success{background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);color:var(–green);}
+
+/* LAYOUT */
+.app{display:none;min-height:100vh;}
+.app.active{display:flex;}
+.sidebar{width:240px;min-height:100vh;background:var(–dark2);border-right:1px solid var(–border);
+display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;
+transition:transform .3s;}
+.sidebar-logo{padding:20px 24px 16px;border-bottom:1px solid var(–border);}
+.sidebar-logo-txt{font-family:‘Teko’,sans-serif;font-size:1.4rem;font-weight:700;letter-spacing:2px;
+background:linear-gradient(135deg,var(–gold),var(–orange));-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;background-clip:text;}
+.sidebar-badge{font-size:.65rem;color:var(–red);letter-spacing:1px;text-transform:uppercase;font-weight:700;margin-top:2px;}
+.sidebar-nav{flex:1;padding:16px 0;overflow-y:auto;}
+.nav-section{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(–muted);
+padding:12px 24px 6px;font-weight:700;}
+.nav-item{display:flex;align-items:center;gap:12px;padding:11px 24px;cursor:pointer;
+font-size:.85rem;font-weight:600;color:var(–muted);transition:all .2s;border-left:3px solid transparent;}
+.nav-item:hover{color:var(–text);background:rgba(255,255,255,.03);}
+.nav-item.active{color:var(–gold);background:rgba(255,210,52,.05);border-left-color:var(–gold);}
+.nav-item .nav-icon{font-size:1rem;width:20px;text-align:center;}
+.nav-item .nav-badge{margin-left:auto;background:var(–red);color:#fff;border-radius:10px;
+padding:2px 7px;font-size:.65rem;font-weight:700;}
+.sidebar-footer{padding:16px 24px;border-top:1px solid var(–border);}
+.admin-info{font-size:.8rem;color:var(–muted);margin-bottom:10px;}
+.admin-email{color:var(–text);font-weight:600;font-size:.82rem;word-break:break-all;}
+
+/* MAIN */
+.main{margin-left:240px;min-height:100vh;flex:1;}
+.topbar{height:62px;background:rgba(8,12,16,.96);backdrop-filter:blur(20px);
+border-bottom:1px solid var(–border);display:flex;align-items:center;
+justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:50;}
+.topbar-title{font-family:‘Teko’,sans-serif;font-size:1.4rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;}
+.topbar-right{display:flex;gap:10px;align-items:center;}
+.hamburger{display:none;background:none;border:none;color:var(–text);font-size:1.4rem;cursor:pointer;}
+
+.content{padding:28px;}
+
+/* PANEL */
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:28px;}
+.stat-card{background:var(–card);border:1px solid var(–border);border-radius:6px;padding:20px;position:relative;overflow:hidden;}
+.stat-card::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;}
+.stat-card.gold::before{background:var(–gold);}
+.stat-card.orange::before{background:var(–orange);}
+.stat-card.green::before{background:var(–green);}
+.stat-card.red::before{background:var(–red);}
+.stat-card.blue::before{background:var(–blue);}
+.sc-label{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(–muted);margin-bottom:8px;}
+.sc-val{font-family:‘Teko’,sans-serif;font-size:2.2rem;font-weight:600;line-height:1;}
+.sc-val.gold{color:var(–gold);} .sc-val.green{color:var(–green);} .sc-val.orange{color:var(–orange);} .sc-val.red{color:var(–red);} .sc-val.blue{color:var(–blue);}
+
+/* PANEL HEADER */
+.panel-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:24px;}
+.panel-title{font-family:‘Teko’,sans-serif;font-size:1.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
+.panel-title span{background:linear-gradient(135deg,var(–gold),var(–orange));
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:3px;
+font-family:‘Barlow’,sans-serif;font-weight:700;font-size:.8rem;letter-spacing:1.5px;
+text-transform:uppercase;cursor:pointer;text-decoration:none;border:none;transition:all .2s;}
+.btn-gold{background:linear-gradient(135deg,var(–gold),var(–orange));color:#000;}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(255,107,0,.4);}
+.btn-outline{background:transparent;color:var(–text);border:1px solid var(–border);}
+.btn-outline:hover{border-color:var(–gold);color:var(–gold);}
+.btn-green{background:rgba(0,230,118,.1);color:var(–green);border:1px solid rgba(0,230,118,.2);}
+.btn-green:hover{background:rgba(0,230,118,.2);}
+.btn-red{background:rgba(255,45,85,.1);color:var(–red);border:1px solid rgba(255,45,85,.2);}
+.btn-red:hover{background:rgba(255,45,85,.2);}
+.btn-blue{background:rgba(67,97,238,.1);color:#7B9FFF;border:1px solid rgba(67,97,238,.2);}
+.btn-blue:hover{background:rgba(67,97,238,.2);}
+.btn-sm{padding:7px 14px;font-size:.72rem;}
+.btn-full{width:100%;justify-content:center;}
+.btn-icon{padding:8px;min-width:unset;}
+
+/* TABLE */
+.table-wrap{background:var(–card);border:1px solid var(–border);border-radius:6px;overflow:hidden;overflow-x:auto;}
+.data-table{width:100%;border-collapse:collapse;min-width:600px;}
+.data-table th{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(–muted);
+font-weight:700;padding:12px 16px;text-align:left;border-bottom:1px solid var(–border);
+background:var(–card2);white-space:nowrap;}
+.data-table td{padding:13px 16px;border-bottom:1px solid rgba(30,45,61,.5);font-size:.87rem;vertical-align:middle;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:hover td{background:rgba(255,255,255,.02);}
+.td-actions{display:flex;gap:6px;flex-wrap:wrap;}
+
+/* BADGE */
+.badge{padding:4px 10px;border-radius:2px;font-size:.67rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.badge-open{background:rgba(0,230,118,.1);color:var(–green);border:1px solid rgba(0,230,118,.2);}
+.badge-full{background:rgba(255,45,85,.1);color:var(–red);border:1px solid rgba(255,45,85,.2);}
+.badge-soon{background:rgba(255,210,52,.1);color:var(–gold);border:1px solid rgba(255,210,52,.2);}
+.badge-pending{background:rgba(255,107,0,.1);color:var(–orange);border:1px solid rgba(255,107,0,.2);}
+.badge-confirmed{background:rgba(0,230,118,.1);color:var(–green);border:1px solid rgba(0,230,118,.2);}
+.badge-winner{background:rgba(255,210,52,.1);color:var(–gold);border:1px solid rgba(255,210,52,.2);}
+.badge-weekly{background:rgba(67,97,238,.1);color:#7B9FFF;border:1px solid rgba(67,97,238,.2);}
+.badge-monthly{background:rgba(123,47,190,.1);color:#C77DFF;border:1px solid rgba(123,47,190,.2);}
+.badge-special{background:rgba(255,45,85,.1);color:var(–red);border:1px solid rgba(255,45,85,.2);}
+
+/* FORM */
+.form-card{background:var(–card);border:1px solid var(–border);border-radius:8px;padding:28px;margin-bottom:20px;}
+.form-title{font-family:‘Teko’,sans-serif;font-size:1.3rem;font-weight:600;letter-spacing:1px;
+text-transform:uppercase;color:var(–gold);margin-bottom:20px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+@media(max-width:700px){.form-grid,.form-grid-3{grid-template-columns:1fr;}}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:0;}
+.field label{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(–muted);font-weight:600;}
+.field input,.field select,.field textarea{background:var(–dark2);border:1px solid var(–border);
+border-radius:4px;padding:11px 14px;color:var(–text);font-family:‘Barlow’,sans-serif;
+font-size:.92rem;width:100%;transition:border-color .2s;-webkit-appearance:none;}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(–gold);}
+.field input::placeholder,.field textarea::placeholder{color:var(–muted);}
+.field select option{background:var(–dark2);}
+.field textarea{resize:vertical;min-height:80px;}
+.field-full{grid-column:1/-1;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);
+z-index:2000;justify-content:center;align-items:center;padding:20px;}
+.modal-overlay.active{display:flex;}
+.modal{background:var(–card);border:1px solid var(–border);border-radius:10px;
+padding:32px;max-width:560px;width:100%;position:relative;
+animation:slideUp .25s ease;max-height:90vh;overflow-y:auto;}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-close{position:absolute;top:14px;right:18px;background:none;border:none;
+color:var(–muted);font-size:1.5rem;cursor:pointer;}
+.modal h3{font-family:‘Teko’,sans-serif;font-size:1.5rem;color:var(–gold);
+letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:500px){.modal-grid{grid-template-columns:1fr;}}
+
+/* TOAST */
+.toast{display:none;position:fixed;bottom:28px;right:28px;background:var(–gold);color:#000;
+padding:13px 24px;border-radius:5px;font-weight:700;font-size:.88rem;z-index:3000;
+animation:fadeIn .3s ease;max-width:300px;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* SPINNER */
+.spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(0,0,0,.3);
+border-top-color:#000;border-radius:50%;animation:sp .6s linear infinite;vertical-align:middle;}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* EMPTY */
+.empty-state{text-align:center;padding:60px 24px;}
+.empty-icon{font-size:3rem;margin-bottom:14px;}
+.empty-txt{font-family:‘Teko’,sans-serif;font-size:1.3rem;color:var(–muted);letter-spacing:1px;text-transform:uppercase;}
+
+/* PRIZE CARD */
+.prize-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:24px;}
+.prize-card{background:var(–card);border:1px solid var(–border);border-radius:8px;padding:22px;position:relative;overflow:hidden;}
+.prize-card::before{content:’’;position:absolute;top:0;left:0;right:0;height:3px;}
+.prize-card.weekly::before{background:linear-gradient(90deg,#4361EE,#7B2FBE);}
+.prize-card.monthly::before{background:linear-gradient(90deg,var(–gold),var(–orange));}
+.prize-card.special::before{background:linear-gradient(90deg,var(–red),var(–orange));}
+.prize-type{font-size:.65rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:8px;}
+.prize-type.weekly{color:#7B9FFF;} .prize-type.monthly{color:var(–gold);} .prize-type.special{color:var(–red);}
+.prize-name{font-family:‘Teko’,sans-serif;font-size:1.3rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.prize-desc{font-size:.82rem;color:var(–muted);line-height:1.5;margin-bottom:14px;}
+.prize-val{font-family:‘Teko’,sans-serif;font-size:1.6rem;color:var(–gold);}
+.prize-date{font-size:.72rem;color:var(–muted);margin-top:8px;}
+.prize-actions{display:flex;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(–border);}
+
+/* OFFER CARD */
+.offer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px;}
+.offer-card{background:var(–card);border:1px solid var(–border);border-radius:8px;padding:22px;}
+.offer-type-badge{display:inline-block;margin-bottom:10px;}
+.offer-title{font-family:‘Teko’,sans-serif;font-size:1.2rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.offer-desc{font-size:.83rem;color:var(–muted);line-height:1.5;margin-bottom:10px;}
+.offer-validity{font-size:.72rem;color:var(–muted);}
+.offer-actions{display:flex;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(–border);}
+
+/* TABS */
+.tab-row{display:flex;gap:2px;background:var(–border);border-radius:6px;padding:3px;margin-bottom:24px;overflow-x:auto;}
+.tab-btn{padding:9px 18px;border:none;background:transparent;border-radius:4px;
+font-family:‘Barlow’,sans-serif;font-size:.76rem;font-weight:700;letter-spacing:1.5px;
+text-transform:uppercase;color:var(–muted);cursor:pointer;transition:all .2s;white-space:nowrap;}
+.tab-btn.active{background:var(–card2);color:var(–gold);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* SEARCH BAR */
+.search-bar{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+.search-input{background:var(–card);border:1px solid var(–border);border-radius:4px;
+padding:10px 14px;color:var(–text);font-family:‘Barlow’,sans-serif;font-size:.9rem;
+flex:1;min-width:200px;transition:border-color .2s;}
+.search-input:focus{outline:none;border-color:var(–gold);}
+.search-input::placeholder{color:var(–muted);}
+.filter-select{background:var(–card);border:1px solid var(–border);border-radius:4px;
+padding:10px 14px;color:var(–text);font-family:‘Barlow’,sans-serif;font-size:.9rem;
+-webkit-appearance:none;cursor:pointer;}
+.filter-select:focus{outline:none;border-color:var(–gold);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+.sidebar{transform:translateX(-100%);}
+.sidebar.open{transform:translateX(0);}
+.main{margin-left:0;}
+.hamburger{display:block;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99;}
+.sidebar-overlay.active{display:block;}
+}
+</style>
+
+</head>
+<body>
+
+<!-- LOGIN -->
+
+<div class="login-screen" id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">⚔ PUBGBATTLE</div>
+    <div class="login-sub">Admin Panel · Restricted Access</div>
+    <div class="msg-box msg-error" id="login-err"></div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="field"><label>Admin Email</label><input type="email" id="adm-email" placeholder="admin@pubgbattle.online"></div>
+      <div class="field"><label>Password</label><input type="password" id="adm-pass" placeholder="••••••••"></div>
+      <button class="btn btn-gold btn-full" onclick="adminLogin()" style="margin-top:6px"><span id="login-btn-txt">Login to Admin Panel</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- SIDEBAR OVERLAY -->
+
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- APP -->
+
+<div class="app" id="app">
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-txt">⚔ PUBGBATTLE</div>
+      <div class="sidebar-badge">Admin Panel</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Overview</div>
+      <div class="nav-item active" onclick="showPanel('dashboard')"><span class="nav-icon">📊</span>Dashboard</div>
+
+```
+  <div class="nav-section">Match Management</div>
+  <div class="nav-item" onclick="showPanel('events')"><span class="nav-icon">🎮</span>Events</div>
+  <div class="nav-item" onclick="showPanel('registrations')"><span class="nav-icon">📋</span>Registrations <span class="nav-badge" id="pending-badge">0</span></div>
+  <div class="nav-item" onclick="showPanel('winners')"><span class="nav-icon">🏆</span>Winners</div>
+
+  <div class="nav-section">Players</div>
+  <div class="nav-item" onclick="showPanel('players')"><span class="nav-icon">👥</span>All Players</div>
+  <div class="nav-item" onclick="showPanel('wallets')"><span class="nav-icon">💰</span>Wallets & Payouts</div>
+
+  <div class="nav-section">Promotions</div>
+  <div class="nav-item" onclick="showPanel('prizes')"><span class="nav-icon">🎁</span>Prizes & Gifts</div>
+  <div class="nav-item" onclick="showPanel('offers')"><span class="nav-icon">📣</span>Offers & Announcements</div>
+</nav>
+<div class="sidebar-footer">
+  <div class="admin-info">Logged in as</div>
+  <div class="admin-email" id="admin-email-display">—</div>
+  <button class="btn btn-outline btn-sm btn-full" style="margin-top:10px" onclick="adminLogout()">Logout</button>
+</div>
+```
+
+  </aside>
+
+  <!-- MAIN -->
+
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:14px">
+        <button class="hamburger" onclick="toggleSidebar()">☰</button>
+        <div class="topbar-title" id="topbar-title">Dashboard</div>
+      </div>
+      <div class="topbar-right">
+        <span style="font-size:.75rem;color:var(--muted)" id="topbar-date"></span>
+      </div>
+    </div>
+
+```
+<div class="content">
+
+  <!-- ═══ DASHBOARD ═══ -->
+  <div class="panel active" id="panel-dashboard">
+    <div class="stats-row">
+      <div class="stat-card gold"><div class="sc-label">Total Revenue</div><div class="sc-val gold" id="s-revenue">₹0</div></div>
+      <div class="stat-card green"><div class="sc-label">Total Players</div><div class="sc-val green" id="s-players">0</div></div>
+      <div class="stat-card orange"><div class="sc-label">Registrations</div><div class="sc-val orange" id="s-regs">0</div></div>
+      <div class="stat-card red"><div class="sc-label">Pending Payments</div><div class="sc-val red" id="s-pending">0</div></div>
+      <div class="stat-card blue"><div class="sc-label">Active Events</div><div class="sc-val blue" id="s-events">0</div></div>
+      <div class="stat-card gold"><div class="sc-label">Prizes Paid Out</div><div class="sc-val gold" id="s-prizes">₹0</div></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;flex-wrap:wrap;">
+      <div>
+        <div class="panel-header" style="margin-bottom:14px"><div class="panel-title">Recent <span>Registrations</span></div></div>
+        <div class="table-wrap"><div id="dash-recent-regs"></div></div>
+      </div>
+      <div>
+        <div class="panel-header" style="margin-bottom:14px"><div class="panel-title">Pending <span>Payouts</span></div></div>
+        <div class="table-wrap"><div id="dash-pending-wd"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ EVENTS ═══ -->
+  <div class="panel" id="panel-events">
+    <div class="panel-header">
+      <div class="panel-title">Manage <span>Events</span></div>
+      <button class="btn btn-gold" onclick="openEventModal()">+ Add Event</button>
+    </div>
+    <div class="table-wrap"><div id="events-table"></div></div>
+  </div>
+
+  <!-- ═══ REGISTRATIONS ═══ -->
+  <div class="panel" id="panel-registrations">
+    <div class="panel-header">
+      <div class="panel-title">Player <span>Registrations</span></div>
+    </div>
+    <div class="search-bar">
+      <input class="search-input" id="reg-search" placeholder="Search player name, IGN, event..." oninput="filterRegs()">
+      <select class="filter-select" id="reg-filter" onchange="filterRegs()">
+        <option value="">All Status</option>
+        <option value="pending">Pending</option>
+        <option value="confirmed">Confirmed</option>
+      </select>
+    </div>
+    <div class="table-wrap"><div id="regs-table"></div></div>
+  </div>
+
+  <!-- ═══ WINNERS ═══ -->
+  <div class="panel" id="panel-winners">
+    <div class="panel-header">
+      <div class="panel-title">Announce <span>Winners</span></div>
+      <button class="btn btn-gold" onclick="openWinnerModal()">+ Announce Winner</button>
+    </div>
+    <div class="table-wrap"><div id="winners-table"></div></div>
+  </div>
+
+  <!-- ═══ PLAYERS ═══ -->
+  <div class="panel" id="panel-players">
+    <div class="panel-header"><div class="panel-title">All <span>Players</span></div></div>
+    <div class="search-bar">
+      <input class="search-input" id="player-search" placeholder="Search name, email, IGN..." oninput="filterPlayers()">
+    </div>
+    <div class="table-wrap"><div id="players-table"></div></div>
+  </div>
+
+  <!-- ═══ WALLETS ═══ -->
+  <div class="panel" id="panel-wallets">
+    <div class="panel-header"><div class="panel-title">Wallets & <span>Payouts</span></div></div>
+    <div class="tab-row">
+      <button class="tab-btn active" onclick="switchWalletTab('withdrawals')">Withdrawal Requests</button>
+      <button class="tab-btn" onclick="switchWalletTab('credits')">Credit Winnings</button>
+    </div>
+    <div class="tab-content active" id="wt-withdrawals"><div class="table-wrap"><div id="wd-table"></div></div></div>
+    <div class="tab-content" id="wt-credits">
+      <div class="form-card">
+        <div class="form-title">Credit Prize to Player Wallet</div>
+        <div class="modal-grid">
+          <div class="field"><label>Player UID (Firebase)</label><input type="text" id="cr-uid" placeholder="Firebase user ID"></div>
+          <div class="field"><label>Amount (₹)</label><input type="number" id="cr-amount" placeholder="Prize amount"></div>
+          <div class="field field-full"><label>Reason</label><input type="text" id="cr-reason" placeholder="e.g. 1st place – Sunday Solo Showdown"></div>
+        </div>
+        <button class="btn btn-gold" style="margin-top:16px" onclick="creditWallet()">Credit to Wallet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PRIZES ═══ -->
+  <div class="panel" id="panel-prizes">
+    <div class="panel-header">
+      <div class="panel-title">Prizes & <span>Gifts</span></div>
+      <button class="btn btn-gold" onclick="openPrizeModal()">+ Add Prize</button>
+    </div>
+    <div class="tab-row">
+      <button class="tab-btn active" onclick="switchPrizeTab('all')">All Prizes</button>
+      <button class="tab-btn" onclick="switchPrizeTab('weekly')">Weekly</button>
+      <button class="tab-btn" onclick="switchPrizeTab('monthly')">Monthly</button>
+      <button class="tab-btn" onclick="switchPrizeTab('special')">Special / Occasions</button>
+    </div>
+    <div class="tab-content active" id="pt-all"><div class="prize-grid" id="prizes-all"></div></div>
+    <div class="tab-content" id="pt-weekly"><div class="prize-grid" id="prizes-weekly"></div></div>
+    <div class="tab-content" id="pt-monthly"><div class="prize-grid" id="prizes-monthly"></div></div>
+    <div class="tab-content" id="pt-special"><div class="prize-grid" id="prizes-special"></div></div>
+  </div>
+
+  <!-- ═══ OFFERS ═══ -->
+  <div class="panel" id="panel-offers">
+    <div class="panel-header">
+      <div class="panel-title">Offers & <span>Announcements</span></div>
+      <button class="btn btn-gold" onclick="openOfferModal()">+ New Announcement</button>
+    </div>
+    <div class="offer-grid" id="offers-grid"></div>
+  </div>
+
+</div>
+```
+
+  </main>
+</div>
+
+<!-- ═══ MODALS ═══ -->
+
+<!-- EVENT MODAL -->
+
+<div class="modal-overlay" id="ev-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('ev-modal')">×</button>
+    <h3 id="ev-modal-title">Add Event</h3>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="form-grid">
+        <div class="field"><label>Event Name</label><input type="text" id="ev-name" placeholder="Sunday Solo Showdown"></div>
+        <div class="field"><label>Mode</label>
+          <select id="ev-mode"><option>Solo</option><option>Duo</option><option>Squad</option></select>
+        </div>
+        <div class="field"><label>Map</label><input type="text" id="ev-map" placeholder="Erangel"></div>
+        <div class="field"><label>Entry Fee (₹)</label><input type="number" id="ev-entry" placeholder="49"></div>
+        <div class="field"><label>Prize Pool (₹)</label><input type="number" id="ev-prize" placeholder="2000"></div>
+        <div class="field"><label>Total Slots</label><input type="number" id="ev-slots" placeholder="96"></div>
+        <div class="field"><label>Date</label><input type="date" id="ev-date"></div>
+        <div class="field"><label>Time</label><input type="time" id="ev-time"></div>
+        <div class="field"><label>Status</label>
+          <select id="ev-status"><option value="open">Open</option><option value="soon">Coming Soon</option><option value="full">Full</option><option value="completed">Completed</option></select>
+        </div>
+        <div class="field"><label>Room ID (send before match)</label><input type="text" id="ev-room" placeholder="Room ID"></div>
+        <div class="field"><label>Room Password</label><input type="text" id="ev-roompass" placeholder="Password"></div>
+      </div>
+      <div class="field"><label>Description</label><textarea id="ev-desc" placeholder="Match rules, special notes..."></textarea></div>
+      <div style="display:flex;gap:10px;margin-top:6px">
+        <button class="btn btn-gold btn-full" onclick="saveEvent()"><span id="ev-save-txt">Save Event</span></button>
+        <button class="btn btn-outline" onclick="closeModal('ev-modal')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WINNER MODAL -->
+
+<div class="modal-overlay" id="win-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('win-modal')">×</button>
+    <h3>Announce Winner</h3>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="form-grid">
+        <div class="field"><label>Event Name</label><input type="text" id="w-event" placeholder="Sunday Solo Showdown"></div>
+        <div class="field"><label>Position</label>
+          <select id="w-pos"><option>🥇 1st Place</option><option>🥈 2nd Place</option><option>🥉 3rd Place</option><option>Top 5</option><option>Top 10</option></select>
+        </div>
+        <div class="field"><label>Player Name</label><input type="text" id="w-name" placeholder="Player name"></div>
+        <div class="field"><label>PUBG IGN</label><input type="text" id="w-ign" placeholder="IGN"></div>
+        <div class="field"><label>Prize Amount (₹)</label><input type="number" id="w-prize" placeholder="2000"></div>
+        <div class="field"><label>Player Firebase UID</label><input type="text" id="w-uid" placeholder="For wallet credit (optional)"></div>
+        <div class="field"><label>Registration ID</label><input type="text" id="w-regid" placeholder="Registration doc ID (optional)"></div>
+      </div>
+      <div class="field"><label>Announcement Message</label>
+        <textarea id="w-msg" placeholder="🏆 Congratulations to..."></textarea>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:6px">
+        <button class="btn btn-gold btn-full" onclick="saveWinner()"><span id="w-save-txt">Announce & Credit Wallet</span></button>
+        <button class="btn btn-outline" onclick="closeModal('win-modal')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRIZE MODAL -->
+
+<div class="modal-overlay" id="prize-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('prize-modal')">×</button>
+    <h3 id="prize-modal-title">Add Prize / Gift</h3>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="form-grid">
+        <div class="field"><label>Prize Name</label><input type="text" id="pr-name" placeholder="Weekly Champion Gift"></div>
+        <div class="field"><label>Prize Type</label>
+          <select id="pr-type"><option value="weekly">Weekly</option><option value="monthly">Monthly</option><option value="special">Special / Occasion</option></select>
+        </div>
+        <div class="field"><label>Prize Value</label><input type="text" id="pr-value" placeholder="₹500 or iPhone 15"></div>
+        <div class="field"><label>Winner Count</label><input type="number" id="pr-count" placeholder="1"></div>
+        <div class="field"><label>Start Date</label><input type="date" id="pr-start"></div>
+        <div class="field"><label>End Date / Announce Date</label><input type="date" id="pr-end"></div>
+        <div class="field"><label>Occasion (if special)</label><input type="text" id="pr-occasion" placeholder="Diwali, New Year..."></div>
+        <div class="field"><label>Status</label>
+          <select id="pr-status"><option value="active">Active</option><option value="announced">Winner Announced</option><option value="upcoming">Upcoming</option></select>
+        </div>
+      </div>
+      <div class="field"><label>Description / Rules</label>
+        <textarea id="pr-desc" placeholder="How to win this prize..."></textarea>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:6px">
+        <button class="btn btn-gold btn-full" onclick="savePrize()"><span id="pr-save-txt">Save Prize</span></button>
+        <button class="btn btn-outline" onclick="closeModal('prize-modal')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OFFER MODAL -->
+
+<div class="modal-overlay" id="offer-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('offer-modal')">×</button>
+    <h3 id="offer-modal-title">New Announcement</h3>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="form-grid">
+        <div class="field"><label>Title</label><input type="text" id="of-title" placeholder="Special Offer!"></div>
+        <div class="field"><label>Type</label>
+          <select id="of-type">
+            <option value="offer">Offer</option>
+            <option value="announcement">Announcement</option>
+            <option value="alert">Alert</option>
+            <option value="maintenance">Maintenance</option>
+          </select>
+        </div>
+        <div class="field"><label>Valid From</label><input type="date" id="of-from"></div>
+        <div class="field"><label>Valid Until</label><input type="date" id="of-to"></div>
+      </div>
+      <div class="field"><label>Message</label>
+        <textarea id="of-msg" placeholder="Full announcement message..." style="min-height:100px"></textarea>
+      </div>
+      <div class="field"><label>Link (optional)</label><input type="text" id="of-link" placeholder="https://..."></div>
+      <div style="display:flex;gap:10px;margin-top:6px">
+        <button class="btn btn-gold btn-full" onclick="saveOffer()"><span id="of-save-txt">Publish</span></button>
+        <button class="btn btn-outline" onclick="closeModal('offer-modal')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM REG MODAL -->
+
+<div class="modal-overlay" id="confirm-reg-modal">
+  <div class="modal" style="max-width:420px">
+    <button class="modal-close" onclick="closeModal('confirm-reg-modal')">×</button>
+    <h3>Confirm Payment</h3>
+    <div style="font-size:.88rem;color:var(--muted);margin-bottom:20px;line-height:1.6" id="confirm-reg-info"></div>
+    <div class="field"><label>Transaction ID (optional)</label><input type="text" id="confirm-txn" placeholder="UPI Transaction ID"></div>
+    <div style="display:flex;gap:10px;margin-top:16px">
+      <button class="btn btn-green btn-full" onclick="confirmPayment()">✅ Confirm Payment</button>
+      <button class="btn btn-red btn-full" onclick="rejectPayment()">❌ Reject</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, collection, addDoc, getDocs,
+  query, where, orderBy, updateDoc, deleteDoc, serverTimestamp, increment, limit }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const app = initializeApp({
+  apiKey:"AIzaSyCfpFoZR3z-ltVwji2m-kQRpS-LUstL-PI",
+  authDomain:"pubgbattle-3e9cd.firebaseapp.com",
+  projectId:"pubgbattle-3e9cd",
+  storageBucket:"pubgbattle-3e9cd.firebasestorage.app",
+  messagingSenderId:"873446350822",
+  appId:"1:873446350822:web:b8da831713bd0c0a024027"
+});
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// ─── ADMIN EMAIL (change this to your email) ───
+const ADMIN_EMAIL = "hemanthdhamodharan@gmail.com";
+
+let allRegs=[], allPlayers=[], allWDs=[], editingId=null, confirmingRegId=null;
+
+// ─── AUTH ───────────────────────────────────────
+window.adminLogin = async function(){
+  const email=document.getElementById('adm-email').value.trim();
+  const pass=document.getElementById('adm-pass').value;
+  if(!email||!pass){showLoginErr('Enter email and password');return;}
+  document.getElementById('login-btn-txt').innerHTML='<span class="spin"></span>';
+  try{
+    const c=await signInWithEmailAndPassword(auth,email,pass);
+    // Only allow admin email
+    if(c.user.email!==ADMIN_EMAIL){
+      await signOut(auth);
+      showLoginErr('Access denied. Admins only.');
+      document.getElementById('login-btn-txt').textContent='Login to Admin Panel';
+      return;
+    }
+  }catch(e){
+    showLoginErr(e.code==='auth/wrong-password'?'Wrong password.':e.code==='auth/user-not-found'?'No account found.':'Login failed.');
+  }
+  document.getElementById('login-btn-txt').textContent='Login to Admin Panel';
+}
+
+window.adminLogout = async function(){
+  await signOut(auth);
+  document.getElementById('app').classList.remove('active');
+  document.getElementById('login-screen').style.display='flex';
+}
+
+onAuthStateChanged(auth, async u=>{
+  if(u && u.email===ADMIN_EMAIL){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('app').classList.add('active');
+    document.getElementById('admin-email-display').textContent=u.email;
+    document.getElementById('topbar-date').textContent=new Date().toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+    await loadAll();
+  } else if(u){
+    await signOut(auth);
+  }
+});
+
+function showLoginErr(msg){
+  const e=document.getElementById('login-err');
+  e.textContent=msg; e.style.display='block';
+  setTimeout(()=>e.style.display='none',4000);
+}
+
+// ─── LOAD ALL DATA ───────────────────────────────
+async function loadAll(){
+  await Promise.all([loadStats(),loadRegistrations(),loadPlayers(),loadWithdrawals(),loadEvents(),loadWinners(),loadPrizes(),loadOffers()]);
+}
+
+async function loadStats(){
+  const [regsSnap,playersSnap,wdSnap,eventsSnap] = await Promise.all([
+    getDocs(collection(db,'registrations')),
+    getDocs(collection(db,'users')),
+    getDocs(query(collection(db,'withdrawals'),where('status','==','pending'))),
+    getDocs(collection(db,'events'))
+  ]);
+  const regs=regsSnap.docs.map(d=>d.data());
+  const revenue=regs.reduce((a,r)=>a+(r.entryFee||0),0);
+  const pending=regs.filter(r=>r.paymentStatus==='pending').length;
+  const prizes=regsSnap.docs.map(d=>d.data()).reduce((a,r)=>a+(r.prizeWon||0),0);
+  const activeEvents=eventsSnap.docs.filter(d=>d.data().status==='open').length;
+
+  document.getElementById('s-revenue').textContent='₹'+revenue.toLocaleString();
+  document.getElementById('s-players').textContent=playersSnap.size;
+  document.getElementById('s-regs').textContent=regsSnap.size;
+  document.getElementById('s-pending').textContent=pending;
+  document.getElementById('s-events').textContent=activeEvents;
+  document.getElementById('s-prizes').textContent='₹'+prizes.toLocaleString();
+  document.getElementById('pending-badge').textContent=pending;
+
+  // Recent regs
+  const recent=regsSnap.docs.slice(0,5).map(d=>({id:d.id,...d.data()}));
+  document.getElementById('dash-recent-regs').innerHTML=recent.length?`
+    <table class="data-table"><thead><tr><th>Player</th><th>Event</th><th>Status</th></tr></thead>
+    <tbody>${recent.map(r=>`<tr><td>${r.userName||r.ign||'-'}</td><td>${r.eventName||'-'}</td>
+      <td><span class="badge badge-${r.paymentStatus==='confirmed'?'confirmed':'pending'}">${r.paymentStatus||'pending'}</span></td>
+    </tr>`).join('')}</tbody></table>`:empty('No registrations yet');
+
+  // Pending withdrawals
+  const wds=wdSnap.docs.slice(0,5).map(d=>({id:d.id,...d.data()}));
+  document.getElementById('dash-pending-wd').innerHTML=wds.length?`
+    <table class="data-table"><thead><tr><th>Amount</th><th>UPI</th><th>Action</th></tr></thead>
+    <tbody>${wds.map(w=>`<tr><td style="color:var(--gold);font-weight:700">₹${w.amount}</td>
+      <td>${w.upiId||'-'}</td>
+      <td><button class="btn btn-green btn-sm" onclick="approveWD('${w.id}','${w.userId}',${w.amount})">Pay</button></td>
+    </tr>`).join('')}</tbody></table>`:empty('No pending payouts');
+}
+
+// ─── EVENTS ─────────────────────────────────────
+async function loadEvents(){
+  const snap=await getDocs(query(collection(db,'events'),orderBy('createdAt','desc')));
+  const events=snap.docs.map(d=>({id:d.id,...d.data()}));
+  const sc={open:'badge-open',full:'badge-full',soon:'badge-soon',completed:'badge-pending'};
+  document.getElementById('events-table').innerHTML=events.length?`
+    <table class="data-table"><thead><tr><th>Event Name</th><th>Mode</th><th>Date</th><th>Entry</th><th>Prize</th><th>Slots</th><th>Status</th><th>Room ID</th><th>Actions</th></tr></thead>
+    <tbody>${events.map(e=>`<tr>
+      <td><strong>${e.name}</strong></td>
+      <td>${e.mode||'-'} · ${e.map||'-'}</td>
+      <td>${e.date||'-'} ${e.time||''}</td>
+      <td>₹${e.entry||0}</td>
+      <td style="color:var(--gold)">₹${e.prize||0}</td>
+      <td>${e.taken||0}/${e.slots||0}</td>
+      <td><span class="badge ${sc[e.status]||'badge-pending'}">${e.status}</span></td>
+      <td style="font-family:monospace;font-size:.8rem">${e.roomId||'—'}</td>
+      <td><div class="td-actions">
+        <button class="btn btn-blue btn-sm" onclick="editEvent('${e.id}')">Edit</button>
+        <button class="btn btn-red btn-sm" onclick="deleteEvent('${e.id}')">Delete</button>
+      </div></td>
+    </tr>`).join('')}</tbody></table>`:empty('No events yet. Click + Add Event');
+}
+
+window.openEventModal = function(id=null){
+  editingId=id;
+  document.getElementById('ev-modal-title').textContent=id?'Edit Event':'Add Event';
+  if(!id){['ev-name','ev-map','ev-entry','ev-prize','ev-slots','ev-date','ev-time','ev-room','ev-roompass','ev-desc'].forEach(i=>document.getElementById(i).value='');}
+  document.getElementById('ev-modal').classList.add('active');
+}
+
+window.editEvent = async function(id){
+  const snap=await getDoc(doc(db,'events',id));
+  if(!snap.exists()) return;
+  const d=snap.data();
+  editingId=id;
+  document.getElementById('ev-modal-title').textContent='Edit Event';
+  document.getElementById('ev-name').value=d.name||'';
+  document.getElementById('ev-mode').value=d.mode||'Solo';
+  document.getElementById('ev-map').value=d.map||'';
+  document.getElementById('ev-entry').value=d.entry||'';
+  document.getElementById('ev-prize').value=d.prize||'';
+  document.getElementById('ev-slots').value=d.slots||'';
+  document.getElementById('ev-date').value=d.date||'';
+  document.getElementById('ev-time').value=d.time||'';
+  document.getElementById('ev-status').value=d.status||'open';
+  document.getElementById('ev-room').value=d.roomId||'';
+  document.getElementById('ev-roompass').value=d.roomPass||'';
+  document.getElementById('ev-desc').value=d.description||'';
+  document.getElementById('ev-modal').classList.add('active');
+}
+
+window.saveEvent = async function(){
+  const data={
+    name:v('ev-name'),mode:v('ev-mode'),map:v('ev-map'),
+    entry:Number(v('ev-entry')),prize:Number(v('ev-prize')),
+    slots:Number(v('ev-slots')),date:v('ev-date'),time:v('ev-time'),
+    status:v('ev-status'),roomId:v('ev-room'),roomPass:v('ev-roompass'),
+    description:v('ev-desc'),taken:0
+  };
+  if(!data.name||!data.entry||!data.prize) return showToast('Fill required fields');
+  document.getElementById('ev-save-txt').innerHTML='<span class="spin"></span>';
+  try{
+    if(editingId) await updateDoc(doc(db,'events',editingId),{...data,updatedAt:serverTimestamp()});
+    else{ data.createdAt=serverTimestamp(); data.taken=0; await addDoc(collection(db,'events'),data); }
+    closeModal('ev-modal');
+    showToast(editingId?'✅ Event updated!':'✅ Event created!');
+    editingId=null;
+    await loadEvents();
+    await loadStats();
+  }catch(e){showToast('Error saving event');}
+  document.getElementById('ev-save-txt').textContent='Save Event';
+}
+
+window.deleteEvent = async function(id){
+  if(!confirm('Delete this event? This cannot be undone.')) return;
+  await deleteDoc(doc(db,'events',id));
+  showToast('Event deleted');
+  await loadEvents();
+  await loadStats();
+}
+
+// ─── REGISTRATIONS ───────────────────────────────
+async function loadRegistrations(){
+  const snap=await getDocs(query(collection(db,'registrations'),orderBy('createdAt','desc')));
+  allRegs=snap.docs.map(d=>({id:d.id,...d.data()}));
+  renderRegs(allRegs);
+}
+
+function renderRegs(regs){
+  document.getElementById('regs-table').innerHTML=regs.length?`
+    <table class="data-table"><thead><tr><th>Player</th><th>IGN</th><th>WhatsApp</th><th>Event</th><th>Mode</th><th>Entry</th><th>Payment</th><th>Actions</th></tr></thead>
+    <tbody>${regs.map(r=>`<tr>
+      <td><strong>${r.userName||'-'}</strong><br><span style="font-size:.75rem;color:var(--muted)">${r.userEmail||''}</span></td>
+      <td>${r.ign||'-'}</td>
+      <td><a href="https://wa.me/${(r.whatsapp||'').replace('+','')}" target="_blank" style="color:var(--green)">${r.whatsapp||'-'}</a></td>
+      <td>${r.eventName||'-'}</td>
+      <td>${r.mode||'-'}</td>
+      <td>₹${r.entryFee||0}</td>
+      <td><span class="badge badge-${r.paymentStatus==='confirmed'?'confirmed':'pending'}">${r.paymentStatus||'pending'}</span></td>
+      <td><div class="td-actions">
+        ${r.paymentStatus!=='confirmed'?`<button class="btn btn-green btn-sm" onclick="openConfirmReg('${r.id}','${r.userName||r.ign}','${r.eventName}',${r.entryFee||0})">✅ Confirm</button>`:''}
+        <button class="btn btn-red btn-sm" onclick="deleteReg('${r.id}')">Delete</button>
+      </div></td>
+    </tr>`).join('')}</tbody></table>`:empty('No registrations found');
+}
+
+window.filterRegs = function(){
+  const q=document.getElementById('reg-search').value.toLowerCase();
+  const f=document.getElementById('reg-filter').value;
+  let filtered=allRegs;
+  if(q) filtered=filtered.filter(r=>(r.userName||'').toLowerCase().includes(q)||(r.ign||'').toLowerCase().includes(q)||(r.eventName||'').toLowerCase().includes(q));
+  if(f) filtered=filtered.filter(r=>r.paymentStatus===f);
+  renderRegs(filtered);
+}
+
+window.openConfirmReg = function(id,name,event,fee){
+  confirmingRegId=id;
+  document.getElementById('confirm-reg-info').innerHTML=`Confirming payment for <strong>${name}</strong> for <strong>${event}</strong>. Entry fee: <strong style="color:var(--gold)">₹${fee}</strong>`;
+  document.getElementById('confirm-txn').value='';
+  document.getElementById('confirm-reg-modal').classList.add('active');
+}
+
+window.confirmPayment = async function(){
+  if(!confirmingRegId) return;
+  const txn=document.getElementById('confirm-txn').value.trim();
+  await updateDoc(doc(db,'registrations',confirmingRegId),{paymentStatus:'confirmed',txnId:txn,confirmedAt:serverTimestamp()});
+  closeModal('confirm-reg-modal');
+  showToast('✅ Payment confirmed!');
+  confirmingRegId=null;
+  await loadRegistrations();
+  await loadStats();
+}
+
+window.rejectPayment = async function(){
+  if(!confirmingRegId) return;
+  await deleteDoc(doc(db,'registrations',confirmingRegId));
+  closeModal('confirm-reg-modal');
+  showToast('Registration rejected & deleted');
+  confirmingRegId=null;
+  await loadRegistrations();
+  await loadStats();
+}
+
+window.deleteReg = async function(id){
+  if(!confirm('Delete this registration?')) return;
+  await deleteDoc(doc(db,'registrations',id));
+  showToast('Deleted');
+  await loadRegistrations();
+  await loadStats();
+}
+
+// ─── WINNERS ─────────────────────────────────────
+async function loadWinners(){
+  const snap=await getDocs(query(collection(db,'winners'),orderBy('createdAt','desc')));
+  const winners=snap.docs.map(d=>({id:d.id,...d.data()}));
+  document.getElementById('winners-table').innerHTML=winners.length?`
+    <table class="data-table"><thead><tr><th>Event</th><th>Position</th><th>Player</th><th>IGN</th><th>Prize</th><th>Date</th><th>Actions</th></tr></thead>
+    <tbody>${winners.map(w=>`<tr>
+      <td><strong>${w.eventName||'-'}</strong></td>
+      <td>${w.position||'-'}</td>
+      <td>${w.playerName||'-'}</td>
+      <td>${w.ign||'-'}</td>
+      <td style="color:var(--gold)"><strong>₹${w.prize||0}</strong></td>
+      <td>${w.createdAt?new Date(w.createdAt.toDate()).toLocaleDateString('en-IN'):'-'}</td>
+      <td><button class="btn btn-red btn-sm" onclick="deleteWinner('${w.id}')">Delete</button></td>
+    </tr>`).join('')}</tbody></table>`:empty('No winners announced yet');
+}
+
+window.openWinnerModal = function(){
+  editingId=null;
+  ['w-event','w-name','w-ign','w-prize','w-uid','w-regid','w-msg'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('win-modal').classList.add('active');
+}
+
+window.saveWinner = async function(){
+  const eventName=v('w-event'),name=v('w-name'),ign=v('w-ign'),
+    prize=Number(v('w-prize')),pos=v('w-pos'),uid=v('w-uid'),
+    regId=v('w-regid'),msg=v('w-msg');
+  if(!eventName||!name||!prize) return showToast('Fill required fields');
+  document.getElementById('w-save-txt').innerHTML='<span class="spin"></span>';
+  try{
+    // Save winner record
+    await addDoc(collection(db,'winners'),{
+      eventName,playerName:name,ign,prize,position:pos,
+      message:msg,playerId:uid||null,createdAt:serverTimestamp()
+    });
+    // Credit wallet if UID provided
+    if(uid){
+      await updateDoc(doc(db,'users',uid),{wallet:increment(prize)});
+      await addDoc(collection(db,'walletHistory'),{
+        userId:uid,type:'credit',amount:prize,
+        reason:`${pos} – ${eventName}`,createdAt:serverTimestamp()
+      });
+    }
+    // Update registration result
+    if(regId){
+      await updateDoc(doc(db,'registrations',regId),{result:'winner',position:pos,prizeWon:prize});
+    }
+    closeModal('win-modal');
+    showToast('🏆 Winner announced & wallet credited!');
+    await loadWinners();
+    await loadStats();
+  }catch(e){showToast('Error: '+e.message);}
+  document.getElementById('w-save-txt').textContent='Announce & Credit Wallet';
+}
+
+window.deleteWinner = async function(id){
+  if(!confirm('Delete this winner record?')) return;
+  await deleteDoc(doc(db,'winners',id));
+  showToast('Deleted');
+  await loadWinners();
+}
+
+// ─── PLAYERS ─────────────────────────────────────
+async function loadPlayers(){
+  const snap=await getDocs(collection(db,'users'));
+  allPlayers=snap.docs.map(d=>({id:d.id,...d.data()}));
+  renderPlayers(allPlayers);
+}
+
+function renderPlayers(players){
+  document.getElementById('players-table').innerHTML=players.length?`
+    <table class="data-table"><thead><tr><th>Name</th><th>Email</th><th>IGN</th><th>PUBG UID</th><th>WhatsApp</th><th>Wallet</th><th>Joined</th></tr></thead>
+    <tbody>${players.map(p=>`<tr>
+      <td><strong>${p.name||'-'}</strong></td>
+      <td style="font-size:.8rem">${p.email||'-'}</td>
+      <td>${p.ign||'-'}</td>
+      <td style="font-family:monospace;font-size:.82rem">${p.pubgUid||'-'}</td>
+      <td><a href="https://wa.me/${(p.phone||'').replace('+','')}" target="_blank" style="color:var(--green)">${p.phone||'-'}</a></td>
+      <td style="color:var(--gold)">₹${p.wallet||0}</td>
+      <td style="font-size:.78rem">${p.createdAt?new Date(p.createdAt.toDate()).toLocaleDateString('en-IN'):'-'}</td>
+    </tr>`).join('')}</tbody></table>`:empty('No players found');
+}
+
+window.filterPlayers = function(){
+  const q=document.getElementById('player-search').value.toLowerCase();
+  const filtered=allPlayers.filter(p=>
+    (p.name||'').toLowerCase().includes(q)||
+    (p.email||'').toLowerCase().includes(q)||
+    (p.ign||'').toLowerCase().includes(q)
+  );
+  renderPlayers(filtered);
+}
+
+// ─── WALLETS ─────────────────────────────────────
+async function loadWithdrawals(){
+  const snap=await getDocs(query(collection(db,'withdrawals'),orderBy('createdAt','desc')));
+  allWDs=snap.docs.map(d=>({id:d.id,...d.data()}));
+  document.getElementById('wd-table').innerHTML=allWDs.length?`
+    <table class="data-table"><thead><tr><th>Player UID</th><th>Amount</th><th>UPI ID</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+    <tbody>${allWDs.map(w=>`<tr>
+      <td style="font-family:monospace;font-size:.78rem">${w.userId||'-'}</td>
+      <td style="color:var(--gold);font-weight:700">₹${w.amount||0}</td>
+      <td>${w.upiId||'-'}</td>
+      <td><span class="badge badge-${w.status==='paid'?'confirmed':'pending'}">${w.status||'pending'}</span></td>
+      <td style="font-size:.78rem">${w.createdAt?new Date(w.createdAt.toDate()).toLocaleDateString('en-IN'):'-'}</td>
+      <td><div class="td-actions">
+        ${w.status!=='paid'?`<button class="btn btn-green btn-sm" onclick="approveWD('${w.id}','${w.userId}',${w.amount})">✅ Mark Paid</button>`:'<span style="color:var(--green);font-size:.8rem">Paid ✓</span>'}
+      </div></td>
+    </tr>`).join('')}</tbody></table>`:empty('No withdrawal requests');
+}
+
+window.approveWD = async function(wdId,userId,amount){
+  if(!confirm(`Mark ₹${amount} withdrawal as paid?`)) return;
+  await updateDoc(doc(db,'withdrawals',wdId),{status:'paid',paidAt:serverTimestamp()});
+  // Deduct from wallet
+  if(userId) await updateDoc(doc(db,'users',userId),{wallet:increment(-amount)});
+  showToast('✅ Marked as paid!');
+  await loadWithdrawals();
+  await loadStats();
+}
+
+window.creditWallet = async function(){
+  const uid=v('cr-uid'),amount=Number(v('cr-amount')),reason=v('cr-reason');
+  if(!uid||!amount) return showToast('Enter UID and amount');
+  try{
+    await updateDoc(doc(db,'users',uid),{wallet:increment(amount)});
+    await addDoc(collection(db,'walletHistory'),{userId:uid,type:'credit',amount,reason,createdAt:serverTimestamp()});
+    document.getElementById('cr-uid').value='';
+    document.getElementById('cr-amount').value='';
+    document.getElementById('cr-reason').value='';
+    showToast('✅ ₹'+amount+' credited to wallet!');
+  }catch(e){showToast('Error: Player not found');}
+}
+
+// ─── PRIZES ──────────────────────────────────────
+async function loadPrizes(){
+  const snap=await getDocs(query(collection(db,'prizes'),orderBy('createdAt','desc')));
+  const prizes=snap.docs.map(d=>({id:d.id,...d.data()}));
+  renderPrizes(prizes,'all');
+  renderPrizes(prizes.filter(p=>p.type==='weekly'),'weekly');
+  renderPrizes(prizes.filter(p=>p.type==='monthly'),'monthly');
+  renderPrizes(prizes.filter(p=>p.type==='special'),'special');
+}
+
+function renderPrizes(prizes,tab){
+  const el=document.getElementById('prizes-'+tab);
+  if(!el) return;
+  el.innerHTML=prizes.length?prizes.map(p=>`
+    <div class="prize-card ${p.type}">
+      <div class="prize-type ${p.type}">${p.type==='weekly'?'🗓 Weekly':p.type==='monthly'?'📅 Monthly':'🎉 Special'} ${p.occasion?'· '+p.occasion:''}</div>
+      <div class="prize-name">${p.name||'Prize'}</div>
+      <div class="prize-desc">${p.description||''}</div>
+      <div class="prize-val">${p.value||''}</div>
+      <div class="prize-date">👥 ${p.winnerCount||1} winner(s) · ${p.startDate||''} → ${p.endDate||''}</div>
+      <div style="margin-top:6px"><span class="badge badge-${p.status==='active'?'open':p.status==='announced'?'winner':'soon'}">${p.status||'active'}</span></div>
+      <div class="prize-actions">
+        <button class="btn btn-blue btn-sm" onclick="editPrize('${p.id}')">Edit</button>
+        <button class="btn btn-red btn-sm" onclick="deletePrize('${p.id}')">Delete</button>
+      </div>
+    </div>`).join(''):
+    `<div style="grid-column:1/-1">${empty('No prizes in this category')}</div>`;
+}
+
+window.openPrizeModal = function(){
+  editingId=null;
+  document.getElementById('prize-modal-title').textContent='Add Prize / Gift';
+  ['pr-name','pr-value','pr-count','pr-start','pr-end','pr-occasion','pr-desc'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('prize-modal').classList.add('active');
+}
+
+window.editPrize = async function(id){
+  const snap=await getDoc(doc(db,'prizes',id));
+  if(!snap.exists()) return;
+  const d=snap.data(); editingId=id;
+  document.getElementById('prize-modal-title').textContent='Edit Prize';
+  document.getElementById('pr-name').value=d.name||'';
+  document.getElementById('pr-type').value=d.type||'weekly';
+  document.getElementById('pr-value').value=d.value||'';
+  document.getElementById('pr-count').value=d.winnerCount||1;
+  document.getElementById('pr-start').value=d.startDate||'';
+  document.getElementById('pr-end').value=d.endDate||'';
+  document.getElementById('pr-occasion').value=d.occasion||'';
+  document.getElementById('pr-status').value=d.status||'active';
+  document.getElementById('pr-desc').value=d.description||'';
+  document.getElementById('prize-modal').classList.add('active');
+}
+
+window.savePrize = async function(){
+  const data={name:v('pr-name'),type:v('pr-type'),value:v('pr-value'),
+    winnerCount:Number(v('pr-count'))||1,startDate:v('pr-start'),
+    endDate:v('pr-end'),occasion:v('pr-occasion'),
+    status:v('pr-status'),description:v('pr-desc')};
+  if(!data.name) return showToast('Enter prize name');
+  document.getElementById('pr-save-txt').innerHTML='<span class="spin"></span>';
+  try{
+    if(editingId) await updateDoc(doc(db,'prizes',editingId),{...data,updatedAt:serverTimestamp()});
+    else{ data.createdAt=serverTimestamp(); await addDoc(collection(db,'prizes'),data); }
+    closeModal('prize-modal');
+    showToast(editingId?'✅ Prize updated!':'✅ Prize added!');
+    editingId=null;
+    await loadPrizes();
+  }catch(e){showToast('Error saving prize');}
+  document.getElementById('pr-save-txt').textContent='Save Prize';
+}
+
+window.deletePrize = async function(id){
+  if(!confirm('Delete this prize?')) return;
+  await deleteDoc(doc(db,'prizes',id));
+  showToast('Prize deleted');
+  await loadPrizes();
+}
+
+// ─── OFFERS ──────────────────────────────────────
+async function loadOffers(){
+  const snap=await getDocs(query(collection(db,'offers'),orderBy('createdAt','desc')));
+  const offers=snap.docs.map(d=>({id:d.id,...d.data()}));
+  const typeColors={offer:'badge-open',announcement:'badge-winner',alert:'badge-full',maintenance:'badge-pending'};
+  document.getElementById('offers-grid').innerHTML=offers.length?offers.map(o=>`
+    <div class="offer-card">
+      <span class="badge ${typeColors[o.type]||'badge-pending'} offer-type-badge">${o.type||'announcement'}</span>
+      <div class="offer-title">${o.title||'Announcement'}</div>
+      <div class="offer-desc">${o.message||''}</div>
+      ${o.link?`<a href="${o.link}" target="_blank" style="font-size:.78rem;color:var(--blue)">🔗 ${o.link}</a>`:''}
+      <div class="offer-validity">📅 ${o.validFrom||''} → ${o.validTo||''}</div>
+      <div class="offer-actions">
+        <button class="btn btn-blue btn-sm" onclick="editOffer('${o.id}')">Edit</button>
+        <button class="btn btn-red btn-sm" onclick="deleteOffer('${o.id}')">Delete</button>
+      </div>
+    </div>`).join(''):
+    `<div style="text-align:center;padding:60px;color:var(--muted)">No announcements yet. Click + New Announcement</div>`;
+}
+
+window.openOfferModal = function(){
+  editingId=null;
+  document.getElementById('offer-modal-title').textContent='New Announcement';
+  ['of-title','of-from','of-to','of-msg','of-link'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('offer-modal').classList.add('active');
+}
+
+window.editOffer = async function(id){
+  const snap=await getDoc(doc(db,'offers',id));
+  if(!snap.exists()) return;
+  const d=snap.data(); editingId=id;
+  document.getElementById('offer-modal-title').textContent='Edit Announcement';
+  document.getElementById('of-title').value=d.title||'';
+  document.getElementById('of-type').value=d.type||'announcement';
+  document.getElementById('of-from').value=d.validFrom||'';
+  document.getElementById('of-to').value=d.validTo||'';
+  document.getElementById('of-msg').value=d.message||'';
+  document.getElementById('of-link').value=d.link||'';
+  document.getElementById('offer-modal').classList.add('active');
+}
+
+window.saveOffer = async function(){
+  const data={title:v('of-title'),type:v('of-type'),validFrom:v('of-from'),
+    validTo:v('of-to'),message:v('of-msg'),link:v('of-link')};
+  if(!data.title||!data.message) return showToast('Enter title and message');
+  document.getElementById('of-save-txt').innerHTML='<span class="spin"></span>';
+  try{
+    if(editingId) await updateDoc(doc(db,'offers',editingId),{...data,updatedAt:serverTimestamp()});
+    else{ data.createdAt=serverTimestamp(); await addDoc(collection(db,'offers'),data); }
+    closeModal('offer-modal');
+    showToast(editingId?'✅ Updated!':'✅ Published!');
+    editingId=null;
+    await loadOffers();
+  }catch(e){showToast('Error');}
+  document.getElementById('of-save-txt').textContent='Publish';
+}
+
+window.deleteOffer = async function(id){
+  if(!confirm('Delete this announcement?')) return;
+  await deleteDoc(doc(db,'offers',id));
+  showToast('Deleted');
+  await loadOffers();
+}
+
+// ─── UI HELPERS ──────────────────────────────────
+const panelTitles={dashboard:'Dashboard',events:'Events',registrations:'Registrations',winners:'Winners',players:'All Players',wallets:'Wallets & Payouts',prizes:'Prizes & Gifts',offers:'Offers & Announcements'};
+
+window.showPanel = function(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>{if(n.getAttribute('onclick')?.includes("'"+id+"'"))n.classList.add('active');});
+  document.getElementById('topbar-title').textContent=panelTitles[id]||id;
+  closeSidebar();
+}
+
+window.switchWalletTab = function(t){
+  document.querySelectorAll('#panel-wallets .tab-btn').forEach((b,i)=>b.classList.toggle('active',['withdrawals','credits'][i]===t));
+  document.querySelectorAll('#panel-wallets .tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById('wt-'+t).classList.add('active');
+}
+
+window.switchPrizeTab = function(t){
+  document.querySelectorAll('#panel-prizes .tab-btn').forEach((b,i)=>b.classList.toggle('active',['all','weekly','monthly','special'][i]===t));
+  document.querySelectorAll('#panel-prizes .tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById('pt-'+t).classList.add('active');
+}
+
+window.closeModal = function(id){document.getElementById(id).classList.remove('active');editingId=null;}
+window.showToast = function(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',3500);}
+window.toggleSidebar = function(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebar-overlay').classList.toggle('active');}
+window.closeSidebar = function(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebar-overlay').classList.remove('active');}
+
+function v(id){return document.getElementById(id)?.value?.trim()||'';}
+function empty(msg){return `<div class="empty-state"><div class="empty-icon">📭</div><div class="empty-txt">${msg}</div></div>`;}
+
+document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o){closeModal(o.id);}}));
+</script>
+
+</body>
+</html>
