@@ -4,299 +4,471 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PUBG Battle – Real Money PUBG Mobile Tournaments India</title>
-<meta name="description" content="Join daily PUBG Mobile tournaments and win real money. Solo, Duo & Squad matches. Register now at pubgbattle.online">
-<meta name="keywords" content="PUBG Mobile tournament, PUBG real money, PUBG tournament India, PUBG match entry fee, PUBG prize pool">
+<title>PUBG Battle – Real Money PUBG Mobile Tournaments India | Win Cash Prizes</title>
+<meta name="description" content="Join India's most intense PUBG Mobile battle tournaments. Compete in Solo, Duo & Squad matches. Real cash prizes. Register now at pubgbattle.online">
+<meta name="keywords" content="PUBG Mobile tournament India, PUBG real money, PUBG online tournament, PUBG squad match, PUBG solo tournament, win cash PUBG, PUBG competition India">
 <meta name="robots" content="index, follow">
+<meta name="author" content="PUBG Battle">
 <link rel="canonical" href="https://pubgbattle.online">
-<meta property="og:title" content="PUBG Battle – Win Real Money Playing PUBG Mobile">
-<meta property="og:description" content="Daily PUBG Mobile tournaments with real cash prizes. Entry from ₹29.">
+<meta property="og:title" content="PUBG Battle – Enter The Arena. Dominate. Win.">
+<meta property="og:description" content="Daily PUBG Mobile tournaments with real cash prizes. Entry from ₹29. India's top battle platform.">
 <meta property="og:url" content="https://pubgbattle.online">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://pubgbattle.online/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PUBG Battle – Dominate the Arena">
+<meta name="twitter:description" content="Daily PUBG Mobile tournaments. Real cash prizes. Enter the battle.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SportsEvent","name":"PUBG Battle Tournaments","description":"Daily PUBG Mobile online tournaments with cash prizes","url":"https://pubgbattle.online","organizer":{"@type":"Organization","name":"PUBG Battle","url":"https://pubgbattle.online"}}
+</script>
+<!-- Google Analytics — replace UA_ID -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --gold:#FFD234; --orange:#FF6B00; --red:#FF2D55; --green:#00E676;
-  --dark:#080C10; --dark2:#0D1117; --card:#111820; --card2:#161E28;
-  --border:#1E2D3D; --text:#E8EDF2; --muted:#6B7B8D; --tg:#2AABEE;
+  --void:#030508; --space:#070B12; --deep:#0A1020; --panel:#0E1828;
+  --surface:#152035; --lift:#1C2D45; --border:#1E3A5F; --border2:#254870;
+  --text:#C8D8E8; --muted:#5A7A9A; --dim:#3A5A7A;
+  --amber:#FFB830; --amber2:#FF8C00;
+  --plasma:#00E5FF; --nova:#FF4D6A; --pulse:#39FF6A; --nebula:#A855F7;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--dark);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;min-height:100vh;}
-.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(ellipse 60% 40% at 15% 0%,rgba(255,107,0,.07) 0%,transparent 60%),
-             radial-gradient(ellipse 50% 30% at 85% 100%,rgba(255,45,85,.05) 0%,transparent 60%);}
+body{background:var(--void);color:var(--text);font-family:'Exo 2',sans-serif;overflow-x:hidden;min-height:100vh;}
+
+/* STARFIELD */
+.stars{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(–d) var(–delay) infinite;}
+@keyframes twinkle{0%,100%{opacity:var(–o);transform:scale(1);}50%{opacity:0.1;transform:scale(0.8);}}
+
+/* NEBULA BG */
+body::before{content:’’;position:fixed;inset:0;z-index:0;pointer-events:none;
+background:
+radial-gradient(ellipse 70% 50% at 5% 0%,rgba(0,229,255,0.05) 0%,transparent 55%),
+radial-gradient(ellipse 50% 40% at 95% 100%,rgba(255,184,48,0.06) 0%,transparent 50%),
+radial-gradient(ellipse 40% 60% at 50% 50%,rgba(168,85,247,0.03) 0%,transparent 60%),
+radial-gradient(ellipse 80% 30% at 20% 80%,rgba(255,77,106,0.04) 0%,transparent 50%);}
+
+/* GRID */
+body::after{content:’’;position:fixed;inset:0;z-index:0;pointer-events:none;
+background-image:linear-gradient(rgba(0,229,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.018) 1px,transparent 1px);
+background-size:50px 50px;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;
-justify-content:space-between;padding:0 24px;height:62px;
-background:rgba(8,12,16,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(–border);}
-.logo{font-family:‘Teko’,sans-serif;font-size:1.6rem;font-weight:700;letter-spacing:3px;cursor:pointer;
-background:linear-gradient(135deg,var(–gold),var(–orange));-webkit-background-clip:text;
--webkit-text-fill-color:transparent;background-clip:text;}
-.nav-links{display:flex;gap:24px;list-style:none;}
-.nav-links a{color:var(–muted);text-decoration:none;font-size:.8rem;font-weight:600;
-letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:color .2s;}
-.nav-links a:hover{color:var(–gold);}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 28px;height:64px;
+background:rgba(3,5,8,0.92);backdrop-filter:blur(24px);
+border-bottom:1px solid rgba(30,58,95,0.6);}
+nav::after{content:’’;position:absolute;bottom:0;left:0;right:0;height:1px;
+background:linear-gradient(90deg,transparent,var(–plasma),transparent);opacity:0.3;}
+
+.logo{font-family:‘Orbitron’,monospace;font-size:1.3rem;font-weight:900;
+letter-spacing:4px;cursor:pointer;text-decoration:none;
+background:linear-gradient(135deg,var(–amber),var(–amber2));
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+text-shadow:none;filter:drop-shadow(0 0 12px rgba(255,184,48,0.4));}
+
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{color:var(–muted);text-decoration:none;font-size:.78rem;font-weight:700;
+letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s;
+position:relative;}
+.nav-links a::after{content:’’;position:absolute;bottom:-4px;left:0;right:0;height:1px;
+background:var(–plasma);transform:scaleX(0);transition:transform .2s;}
+.nav-links a:hover{color:var(–plasma);}
+.nav-links a:hover::after{transform:scaleX(1);}
+
 .nav-right{display:flex;gap:10px;align-items:center;}
-@media(max-width:700px){.nav-links{display:none;}}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;
+background:none;border:none;}
+.hamburger span{width:22px;height:2px;background:var(–text);border-radius:2px;transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* MOBILE NAV */
+.mobile-nav{display:none;position:fixed;top:64px;left:0;right:0;z-index:999;
+background:rgba(3,5,8,0.98);backdrop-filter:blur(24px);
+border-bottom:1px solid var(–border);padding:20px 28px;
+flex-direction:column;gap:4px;}
+.mobile-nav.open{display:flex;}
+.mobile-nav a{color:var(–muted);text-decoration:none;font-size:.9rem;font-weight:700;
+letter-spacing:2px;text-transform:uppercase;cursor:pointer;padding:12px 0;
+border-bottom:1px solid rgba(30,58,95,0.3);transition:color .2s;}
+.mobile-nav a:hover{color:var(–plasma);}
+.mobile-nav a:last-of-type{border-bottom:none;}
+.mobile-nav-btns{display:flex;gap:10px;margin-top:12px;}
+
+@media(max-width:768px){
+.nav-links{display:none;}
+.hamburger{display:flex;}
+nav{padding:0 20px;}
+}
 
 /* BUTTONS */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:3px;
-font-family:‘Barlow’,sans-serif;font-weight:700;font-size:.82rem;letter-spacing:1.5px;
-text-transform:uppercase;cursor:pointer;text-decoration:none;border:none;transition:all .2s;}
-.btn-gold{background:linear-gradient(135deg,var(–gold),var(–orange));color:#000;box-shadow:0 0 20px rgba(255,107,0,.3);}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 4px 30px rgba(255,107,0,.5);}
-.btn-outline{background:transparent;color:var(–text);border:1px solid var(–border);}
-.btn-outline:hover{border-color:var(–gold);color:var(–gold);}
-.btn-ghost{background:transparent;color:var(–muted);border:none;cursor:pointer;
-font-family:‘Barlow’,sans-serif;font-size:.82rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
-.btn-ghost:hover{color:var(–text);}
-.btn-tg{background:var(–tg);color:#fff;box-shadow:0 0 20px rgba(42,171,238,.3);}
-.btn-tg:hover{transform:translateY(-2px);box-shadow:0 4px 30px rgba(42,171,238,.5);}
-.btn-sm{padding:8px 16px;font-size:.75rem;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:3px;
+font-family:‘Exo 2’,sans-serif;font-weight:700;font-size:.82rem;letter-spacing:2px;
+text-transform:uppercase;cursor:pointer;text-decoration:none;border:none;transition:all .25s;}
+.btn-war{background:linear-gradient(135deg,var(–amber),var(–amber2));color:#000;
+box-shadow:0 0 24px rgba(255,184,48,0.35);clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+.btn-war:hover{transform:translateY(-2px);box-shadow:0 6px 36px rgba(255,184,48,0.55);}
+.btn-ghost{background:transparent;color:var(–text);border:1px solid var(–border2);
+clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
+.btn-ghost:hover{border-color:var(–plasma);color:var(–plasma);box-shadow:0 0 16px rgba(0,229,255,0.15);}
+.btn-tg{background:rgba(42,171,238,0.15);color:#2AABEE;border:1px solid rgba(42,171,238,0.3);}
+.btn-tg:hover{background:rgba(42,171,238,0.25);box-shadow:0 0 20px rgba(42,171,238,0.3);}
+.btn-sm{padding:8px 18px;font-size:.75rem;}
 .btn-full{width:100%;justify-content:center;}
-.btn-google{background:var(–dark2);border:1px solid var(–border);color:var(–text);width:100%;justify-content:center;}
-.btn-google:hover{border-color:var(–gold);}
 
 /* PAGES */
-.page{display:none;min-height:100vh;padding-top:62px;position:relative;z-index:1;}
+.page{display:none;min-height:100vh;padding-top:64px;position:relative;z-index:1;}
 .page.active{display:block;}
 
 /* LOADING */
-#loading-screen{position:fixed;inset:0;background:var(–dark);z-index:9000;
-display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;}
-.loading-logo{font-family:‘Teko’,sans-serif;font-size:2.5rem;font-weight:700;letter-spacing:4px;
-background:linear-gradient(135deg,var(–gold),var(–orange));-webkit-background-clip:text;
--webkit-text-fill-color:transparent;background-clip:text;}
-.loading-bar{width:200px;height:2px;background:var(–border);border-radius:2px;overflow:hidden;}
-.loading-fill{height:100%;background:linear-gradient(90deg,var(–gold),var(–orange));
-animation:load 1.5s ease forwards;}
-@keyframes load{from{width:0}to{width:100%}}
+#loading{position:fixed;inset:0;background:var(–void);z-index:9999;
+display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;}
+.load-logo{font-family:‘Orbitron’,monospace;font-size:2rem;font-weight:900;letter-spacing:6px;
+background:linear-gradient(135deg,var(–amber),var(–plasma));
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
+.load-bar{width:220px;height:2px;background:var(–border);border-radius:2px;overflow:hidden;}
+.load-fill{height:100%;background:linear-gradient(90deg,var(–plasma),var(–amber));
+animation:loadfill 1.8s ease forwards;}
+@keyframes loadfill{from{width:0}to{width:100%}}
+.load-status{font-size:.7rem;color:var(–muted);letter-spacing:3px;text-transform:uppercase;}
 
-/* HERO */
-.hero{max-width:1100px;margin:0 auto;padding:80px 24px 60px;}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;
-border:1px solid rgba(255,210,52,.25);border-radius:2px;background:rgba(255,210,52,.06);
-color:var(–gold);font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:28px;}
-.live-dot{width:7px;height:7px;background:var(–red);border-radius:50%;animation:blink 1.2s infinite;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.hero h1{font-family:‘Teko’,sans-serif;font-size:clamp(3.5rem,12vw,8rem);font-weight:700;
-line-height:.95;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;}
-.hero h1 .grad{background:linear-gradient(135deg,var(–gold),var(–orange));
--webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;}
-.hero-sub{font-size:clamp(1rem,2.5vw,1.15rem);color:var(–muted);max-width:480px;line-height:1.7;margin-bottom:36px;}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:60px;}
-.stats{display:flex;gap:36px;flex-wrap:wrap;}
-.stat{border-left:2px solid var(–orange);padding-left:14px;}
-.stat-num{font-family:‘Teko’,sans-serif;font-size:2rem;font-weight:600;color:var(–gold);line-height:1;}
-.stat-label{font-size:.72rem;color:var(–muted);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+/* ── HERO ── */
+.hero{max-width:1200px;margin:0 auto;padding:90px 28px 70px;position:relative;}
+
+.hero-tag{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;
+border:1px solid rgba(0,229,255,0.25);border-radius:2px;
+background:rgba(0,229,255,0.05);margin-bottom:32px;
+font-size:.68rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(–plasma);}
+.live-dot{width:7px;height:7px;background:var(–nova);border-radius:50%;
+animation:blink 1.2s infinite;box-shadow:0 0 6px var(–nova);}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.3;transform:scale(0.7);}}
+
+.hero h1{font-family:‘Orbitron’,monospace;
+font-size:clamp(2.8rem,10vw,7.5rem);
+font-weight:900;line-height:0.92;letter-spacing:-1px;
+text-transform:uppercase;margin-bottom:28px;}
+.hero h1 .line-dim{color:rgba(200,216,232,0.35);display:block;font-size:0.55em;}
+.hero h1 .line-main{display:block;
+background:linear-gradient(135deg,var(–amber) 0%,var(–amber2) 40%,var(–nova) 100%);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+filter:drop-shadow(0 0 30px rgba(255,184,48,0.3));}
+.hero h1 .line-sub{color:var(–text);display:block;font-size:0.55em;letter-spacing:6px;
+font-family:‘Exo 2’,sans-serif;font-weight:300;margin-top:8px;}
+
+.hero-desc{font-size:clamp(.95rem,2vw,1.15rem);color:var(–muted);
+max-width:520px;line-height:1.8;margin-bottom:40px;font-weight:400;}
+.hero-desc strong{color:var(–text);}
+
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:70px;}
+
+/* STATS */
+.stats-row{display:flex;gap:0;flex-wrap:wrap;
+border:1px solid var(–border);border-radius:4px;overflow:hidden;
+background:rgba(14,24,40,0.6);backdrop-filter:blur(10px);}
+.stat-item{flex:1;min-width:120px;padding:20px 24px;
+border-right:1px solid var(–border);position:relative;}
+.stat-item:last-child{border-right:none;}
+.stat-item::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;
+background:linear-gradient(90deg,transparent,var(–amber),transparent);opacity:0.6;}
+.stat-num{font-family:‘Orbitron’,monospace;font-size:1.6rem;font-weight:700;
+color:var(–amber);display:block;line-height:1;}
+.stat-lbl{font-size:.65rem;color:var(–muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
 
 /* SECTION */
-.section{position:relative;z-index:1;padding:70px 24px;max-width:1100px;margin:0 auto;}
-.sec-label{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(–orange);font-weight:700;margin-bottom:8px;}
-.sec-title{font-family:‘Teko’,sans-serif;font-size:clamp(2rem,6vw,3rem);font-weight:600;
-letter-spacing:1px;text-transform:uppercase;line-height:1;margin-bottom:36px;}
-.sec-title span{background:linear-gradient(135deg,var(–gold),var(–orange));
+.section{position:relative;z-index:1;padding:80px 28px;max-width:1200px;margin:0 auto;}
+.sec-eyebrow{font-size:.65rem;letter-spacing:5px;text-transform:uppercase;
+color:var(–plasma);font-weight:700;margin-bottom:10px;
+display:flex;align-items:center;gap:10px;}
+.sec-eyebrow::before{content:’’;width:24px;height:1px;background:var(–plasma);}
+.sec-title{font-family:‘Orbitron’,monospace;font-size:clamp(1.6rem,5vw,2.8rem);
+font-weight:700;letter-spacing:2px;text-transform:uppercase;line-height:1;margin-bottom:40px;}
+.sec-title .accent{background:linear-gradient(135deg,var(–amber),var(–nova));
 -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.divider{position:relative;z-index:1;height:1px;
-background:linear-gradient(90deg,transparent,var(–border),transparent);margin:0 24px;}
+
+.divider{position:relative;z-index:1;height:1px;margin:0;
+background:linear-gradient(90deg,transparent,var(–border2),transparent);}
 
 /* EVENTS */
-.events-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px;}
-.ecard{background:var(–card);border:1px solid var(–border);border-radius:6px;
-overflow:hidden;cursor:pointer;transition:all .25s;}
-.ecard:hover{border-color:rgba(255,210,52,.4);transform:translateY(-3px);
-box-shadow:0 16px 48px rgba(0,0,0,.5);}
-.ecard-accent{height:3px;background:linear-gradient(90deg,var(–gold),var(–orange));}
-.ecard-accent.red{background:linear-gradient(90deg,var(–red),var(–orange));}
-.ecard-accent.blue{background:linear-gradient(90deg,#4361EE,#7B2FBE);}
-.ecard-body{padding:20px;}
-.ecard-mode{font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(–orange);font-weight:700;margin-bottom:8px;}
-.ecard-name{font-family:‘Teko’,sans-serif;font-size:1.4rem;font-weight:600;letter-spacing:1px;
-text-transform:uppercase;margin-bottom:14px;line-height:1.1;}
-.ecard-rows{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
-.ecard-row{display:flex;justify-content:space-between;font-size:.87rem;}
-.ecard-k{color:var(–muted);}
-.ecard-v{font-weight:600;}
-.ecard-v.gold{color:var(–gold);font-family:‘Teko’,sans-serif;font-size:1.1rem;}
-.ecard-foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(–border);}
-.slots-wrap{flex:1;margin-right:12px;}
-.slots-txt{font-size:.7rem;color:var(–muted);margin-bottom:4px;}
-.slots-bar{height:3px;background:var(–border);border-radius:2px;overflow:hidden;}
-.slots-fill{height:100%;background:linear-gradient(90deg,var(–green),var(–gold));border-radius:2px;}
-.slots-fill.danger{background:linear-gradient(90deg,var(–orange),var(–red));}
-.badge{padding:4px 10px;border-radius:2px;font-size:.67rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
-.badge-open{background:rgba(0,230,118,.1);color:var(–green);border:1px solid rgba(0,230,118,.2);}
-.badge-full{background:rgba(255,45,85,.1);color:var(–red);border:1px solid rgba(255,45,85,.2);}
-.badge-soon{background:rgba(255,210,52,.1);color:var(–gold);border:1px solid rgba(255,210,52,.2);}
-.badge-pending{background:rgba(255,107,0,.1);color:var(–orange);border:1px solid rgba(255,107,0,.2);}
+.events-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;}
+
+.ecard{background:linear-gradient(135deg,var(–panel),var(–deep));
+border:1px solid var(–border);border-radius:6px;overflow:hidden;
+cursor:pointer;transition:all .3s;position:relative;}
+.ecard::before{content:’’;position:absolute;inset:0;
+background:linear-gradient(135deg,rgba(0,229,255,0.03),transparent);
+opacity:0;transition:opacity .3s;}
+.ecard:hover{border-color:var(–plasma);transform:translateY(-4px);
+box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 30px rgba(0,229,255,0.1);}
+.ecard:hover::before{opacity:1;}
+
+.ecard-stripe{height:3px;}
+.ecard-stripe.amber{background:linear-gradient(90deg,var(–amber),var(–amber2));}
+.ecard-stripe.nova{background:linear-gradient(90deg,var(–nova),var(–amber2));}
+.ecard-stripe.plasma{background:linear-gradient(90deg,var(–plasma),var(–nebula));}
+
+.ecard-body{padding:22px;}
+.ecard-mode{font-size:.65rem;letter-spacing:4px;text-transform:uppercase;
+color:var(–plasma);font-weight:700;margin-bottom:10px;
+display:flex;align-items:center;gap:6px;}
+.ecard-mode::before{content:‘▸’;}
+.ecard-name{font-family:‘Orbitron’,monospace;font-size:1.1rem;font-weight:700;
+letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;line-height:1.2;}
+
+.ecard-rows{display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
+.ecard-row{display:flex;justify-content:space-between;align-items:center;
+font-size:.85rem;padding:6px 0;border-bottom:1px solid rgba(30,58,95,0.4);}
+.ecard-row:last-child{border-bottom:none;}
+.ecard-k{color:var(–muted);font-weight:400;}
+.ecard-v{font-weight:700;}
+.ecard-v.amber{color:var(–amber);font-family:‘Orbitron’,monospace;font-size:.95rem;}
+
+.ecard-foot{display:flex;justify-content:space-between;align-items:center;
+padding-top:14px;border-top:1px solid var(–border);}
+.slots-wrap{flex:1;margin-right:14px;}
+.slots-txt{font-size:.68rem;color:var(–muted);margin-bottom:5px;letter-spacing:1px;}
+.slots-bar{height:3px;background:rgba(30,58,95,0.8);border-radius:2px;overflow:hidden;}
+.slots-fill{height:100%;background:linear-gradient(90deg,var(–pulse),var(–plasma));border-radius:2px;}
+.slots-fill.hot{background:linear-gradient(90deg,var(–amber),var(–nova));}
+
+.badge{padding:4px 10px;border-radius:2px;font-size:.65rem;font-weight:700;
+letter-spacing:2px;text-transform:uppercase;}
+.b-open{background:rgba(57,255,106,0.1);color:var(–pulse);border:1px solid rgba(57,255,106,0.25);}
+.b-full{background:rgba(255,77,106,0.1);color:var(–nova);border:1px solid rgba(255,77,106,0.25);}
+.b-soon{background:rgba(255,184,48,0.1);color:var(–amber);border:1px solid rgba(255,184,48,0.25);}
+.b-pending{background:rgba(168,85,247,0.1);color:var(–nebula);border:1px solid rgba(168,85,247,0.25);}
+.b-confirmed{background:rgba(57,255,106,0.1);color:var(–pulse);border:1px solid rgba(57,255,106,0.25);}
 
 /* HOW IT WORKS */
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:2px;background:var(–border);border-radius:6px;overflow:hidden;}
-.step{background:var(–card);padding:28px 24px;position:relative;}
-.step-num{font-family:‘Teko’,sans-serif;font-size:4rem;font-weight:700;
-color:rgba(255,107,0,.07);line-height:1;position:absolute;top:12px;right:16px;}
-.step-icon{font-size:1.6rem;margin-bottom:12px;}
-.step-title{font-family:‘Teko’,sans-serif;font-size:1.15rem;font-weight:600;
-letter-spacing:1px;text-transform:uppercase;color:var(–gold);margin-bottom:6px;}
-.step p{font-size:.87rem;color:var(–muted);line-height:1.6;}
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;
+background:var(–border);border-radius:6px;overflow:hidden;}
+.how-step{background:var(–panel);padding:32px 28px;position:relative;overflow:hidden;
+transition:background .3s;}
+.how-step:hover{background:var(–surface);}
+.how-step::after{content:attr(data-num);position:absolute;bottom:-10px;right:10px;
+font-family:‘Orbitron’,monospace;font-size:5rem;font-weight:900;
+color:rgba(0,229,255,0.04);line-height:1;pointer-events:none;}
+.how-icon{font-size:2rem;margin-bottom:16px;display:block;}
+.how-title{font-family:‘Orbitron’,monospace;font-size:.9rem;font-weight:700;
+letter-spacing:2px;text-transform:uppercase;color:var(–amber);margin-bottom:10px;}
+.how-desc{font-size:.87rem;color:var(–muted);line-height:1.7;}
 
 /* WINNERS */
-.winners-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;}
-.winner-card{background:var(–card);border:1px solid var(–border);border-radius:6px;padding:22px;position:relative;overflow:hidden;}
-.winner-card::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(–gold),var(–orange));}
-.winner-pos{font-family:‘Teko’,sans-serif;font-size:3rem;font-weight:700;color:rgba(255,210,52,.07);position:absolute;top:6px;right:14px;line-height:1;}
-.winner-event{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(–orange);margin-bottom:6px;}
-.winner-name{font-family:‘Teko’,sans-serif;font-size:1.4rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
-.winner-ign{font-size:.78rem;color:var(–muted);margin-bottom:12px;}
-.prize-amt{font-family:‘Teko’,sans-serif;font-size:1.6rem;color:var(–gold);}
-.winner-date{font-size:.7rem;color:var(–muted);margin-top:8px;}
+.winners-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px;}
+.winner-card{background:linear-gradient(135deg,var(–panel),var(–deep));
+border:1px solid var(–border);border-radius:6px;padding:24px;
+position:relative;overflow:hidden;transition:all .3s;}
+.winner-card:hover{border-color:var(–amber);box-shadow:0 0 30px rgba(255,184,48,0.08);}
+.winner-card::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;
+background:linear-gradient(90deg,var(–amber),var(–nova));}
+.w-rank{font-family:‘Orbitron’,monospace;font-size:3.5rem;font-weight:900;
+color:rgba(255,184,48,0.07);position:absolute;top:8px;right:14px;line-height:1;}
+.w-event{font-size:.65rem;letter-spacing:3px;text-transform:uppercase;
+color:var(–plasma);margin-bottom:8px;}
+.w-name{font-family:‘Orbitron’,monospace;font-size:1.1rem;font-weight:700;
+letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.w-ign{font-size:.78rem;color:var(–muted);margin-bottom:14px;}
+.w-prize{font-family:‘Orbitron’,monospace;font-size:1.4rem;color:var(–amber);}
+.w-date{font-size:.68rem;color:var(–dim);margin-top:8px;}
 
 /* TG BANNER */
-.tg-banner{position:relative;z-index:1;margin:0 24px 70px;
-background:linear-gradient(135deg,#0D1117,#0D1A2A);border:1px solid rgba(42,171,238,.2);
-border-radius:8px;padding:44px 40px;display:flex;align-items:center;
+.tg-section{position:relative;z-index:1;margin:0 28px 80px;
+background:linear-gradient(135deg,var(–panel),rgba(42,171,238,0.05));
+border:1px solid rgba(42,171,238,0.2);border-radius:8px;
+padding:50px 44px;display:flex;align-items:center;
 justify-content:space-between;gap:24px;flex-wrap:wrap;overflow:hidden;}
-.tg-banner::before{content:‘✈’;position:absolute;font-size:12rem;right:-10px;top:-20px;opacity:.03;}
-.tg-text h2{font-family:‘Teko’,sans-serif;font-size:clamp(1.8rem,5vw,2.6rem);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
-.tg-text p{font-size:.9rem;color:var(–muted);max-width:380px;line-height:1.6;}
+.tg-section::before{content:‘◈ BROADCAST CHANNEL’;position:absolute;
+top:16px;left:24px;font-size:.6rem;color:rgba(42,171,238,0.4);letter-spacing:4px;}
+.tg-section::after{content:‘✈’;position:absolute;font-size:14rem;
+right:-20px;bottom:-30px;opacity:0.03;line-height:1;}
+.tg-title{font-family:‘Orbitron’,monospace;font-size:clamp(1.5rem,4vw,2.2rem);
+font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.tg-desc{font-size:.92rem;color:var(–muted);max-width:400px;line-height:1.7;}
 
 /* AUTH */
-.auth-wrap{min-height:calc(100vh - 62px);display:flex;align-items:center;justify-content:center;padding:40px 24px;}
-.auth-box{background:var(–card);border:1px solid var(–border);border-radius:8px;width:100%;max-width:440px;overflow:hidden;}
+.auth-wrap{min-height:calc(100vh - 64px);display:flex;align-items:center;
+justify-content:center;padding:40px 24px;}
+.auth-box{background:linear-gradient(135deg,var(–panel),var(–deep));
+border:1px solid var(–border2);border-radius:8px;
+width:100%;max-width:460px;overflow:hidden;position:relative;}
+.auth-box::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;
+background:linear-gradient(90deg,transparent,var(–plasma),var(–amber),transparent);}
 .auth-tabs{display:flex;border-bottom:1px solid var(–border);}
-.auth-tab{flex:1;padding:16px;text-align:center;font-size:.78rem;font-weight:700;
-letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:var(–muted);
+.auth-tab{flex:1;padding:16px;text-align:center;font-size:.72rem;font-weight:700;
+letter-spacing:3px;text-transform:uppercase;cursor:pointer;color:var(–muted);
 border:none;background:transparent;transition:all .2s;border-bottom:2px solid transparent;}
-.auth-tab.active{color:var(–gold);border-bottom-color:var(–gold);}
-.auth-body{padding:32px;}
-.auth-title{font-family:‘Teko’,sans-serif;font-size:1.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
-.auth-sub{font-size:.85rem;color:var(–muted);margin-bottom:28px;}
-.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
-.field label{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(–muted);font-weight:600;}
-.field input,.field select,.field textarea{background:var(–dark2);border:1px solid var(–border);border-radius:4px;
-padding:12px 14px;color:var(–text);font-family:‘Barlow’,sans-serif;font-size:.95rem;
-width:100%;transition:border-color .2s;-webkit-appearance:none;}
-.field input:focus,.field select:focus{outline:none;border-color:var(–gold);box-shadow:0 0 0 3px rgba(255,210,52,.07);}
-.field input::placeholder{color:var(–muted);}
-.field select option{background:var(–dark2);}
+.auth-tab.active{color:var(–amber);border-bottom-color:var(–amber);}
+.auth-body{padding:36px;}
+.auth-title{font-family:‘Orbitron’,monospace;font-size:1.5rem;font-weight:700;
+letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.auth-sub{font-size:.82rem;color:var(–muted);margin-bottom:28px;line-height:1.6;}
+
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.field label{font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(–muted);font-weight:700;}
+.field input,.field select{background:rgba(0,0,0,0.3);border:1px solid var(–border);
+border-radius:4px;padding:12px 14px;color:var(–text);font-family:‘Exo 2’,sans-serif;
+font-size:.93rem;width:100%;transition:all .2s;-webkit-appearance:none;}
+.field input:focus,.field select:focus{outline:none;border-color:var(–plasma);
+box-shadow:0 0 0 3px rgba(0,229,255,0.07);}
+.field input::placeholder{color:var(–dim);}
+.field select option{background:var(–panel);}
 .phone-row{display:flex;gap:8px;}
-.phone-code{width:70px!important;flex-shrink:0;}
+.phone-code{width:70px!important;flex-shrink:0;color:var(–muted)!important;cursor:default!important;}
+
 .or-div{display:flex;align-items:center;gap:14px;margin:18px 0;}
 .or-div::before,.or-div::after{content:’’;flex:1;height:1px;background:var(–border);}
-.or-div span{font-size:.72rem;color:var(–muted);letter-spacing:2px;}
-.msg-box{border-radius:4px;padding:12px 14px;font-size:.85rem;margin-bottom:14px;display:none;line-height:1.5;}
-.msg-error{background:rgba(255,45,85,.08);border:1px solid rgba(255,45,85,.2);color:var(–red);}
-.msg-success{background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);color:var(–green);}
-.auth-switch{text-align:center;margin-top:20px;font-size:.83rem;color:var(–muted);}
-.auth-switch a{color:var(–gold);cursor:pointer;font-weight:600;}
-.google-icon{width:18px;height:18px;}
+.or-div span{font-size:.65rem;color:var(–dim);letter-spacing:3px;text-transform:uppercase;}
+
+.msg-box{border-radius:4px;padding:12px 14px;font-size:.84rem;margin-bottom:14px;display:none;line-height:1.5;}
+.msg-err{background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.2);color:var(–nova);}
+.msg-ok{background:rgba(57,255,106,0.08);border:1px solid rgba(57,255,106,0.2);color:var(–pulse);}
+
+.btn-google{background:rgba(255,255,255,0.05);border:1px solid var(–border2);
+color:var(–text);width:100%;justify-content:center;}
+.btn-google:hover{border-color:var(–amber);background:rgba(255,184,48,0.05);}
+.gicon{width:18px;height:18px;}
+.auth-switch{text-align:center;margin-top:20px;font-size:.82rem;color:var(–muted);}
+.auth-switch a{color:var(–amber);cursor:pointer;font-weight:700;}
 
 /* DASHBOARD */
-.dash-wrap{max-width:1000px;margin:0 auto;padding:40px 24px;}
-.dash-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:36px;}
-.dash-greeting{font-family:‘Teko’,sans-serif;font-size:2rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
-.dash-greeting span{background:linear-gradient(135deg,var(–gold),var(–orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.dash-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:28px;}
-.dash-card{background:var(–card);border:1px solid var(–border);border-radius:6px;padding:20px;}
-.dash-card-lbl{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(–muted);margin-bottom:8px;}
-.dash-card-val{font-family:‘Teko’,sans-serif;font-size:2rem;font-weight:600;line-height:1;}
-.c-gold{color:var(–gold);} .c-green{color:var(–green);} .c-orange{color:var(–orange);}
+.dash-wrap{max-width:1100px;margin:0 auto;padding:40px 28px;}
+.dash-header{display:flex;justify-content:space-between;align-items:flex-start;
+flex-wrap:wrap;gap:16px;margin-bottom:36px;padding-bottom:24px;
+border-bottom:1px solid var(–border);}
+.dash-callsign{font-size:.65rem;letter-spacing:4px;text-transform:uppercase;
+color:var(–plasma);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.dash-callsign::before{content:‘◈’;font-size:.6rem;}
+.dash-name{font-family:‘Orbitron’,monospace;font-size:1.8rem;font-weight:700;
+letter-spacing:2px;text-transform:uppercase;}
+.dash-name span{background:linear-gradient(135deg,var(–amber),var(–nova));
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+.dash-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:14px;margin-bottom:24px;}
+.dash-card{background:linear-gradient(135deg,var(–panel),var(–deep));
+border:1px solid var(–border);border-radius:6px;padding:20px;position:relative;overflow:hidden;}
+.dash-card::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;}
+.dash-card.c1::before{background:var(–amber);}
+.dash-card.c2::before{background:var(–pulse);}
+.dash-card.c3::before{background:var(–plasma);}
+.dash-card.c4::before{background:var(–nova);}
+.dc-lbl{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(–muted);margin-bottom:8px;}
+.dc-val{font-family:‘Orbitron’,monospace;font-size:1.8rem;font-weight:700;line-height:1;}
+.dc-val.amber{color:var(–amber);} .dc-val.pulse{color:var(–pulse);}
+.dc-val.plasma{color:var(–plasma);} .dc-val.nova{color:var(–nova);}
 
 /* WALLET */
-.wallet-box{background:linear-gradient(135deg,#111820,#0D1A14);
-border:1px solid rgba(0,230,118,.15);border-radius:8px;padding:28px;margin-bottom:28px;}
-.wallet-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:8px;}
-.wallet-lbl{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(–muted);margin-bottom:6px;}
-.wallet-amt{font-family:‘Teko’,sans-serif;font-size:3rem;font-weight:700;color:var(–green);line-height:1;}
-.wallet-note{font-size:.78rem;color:var(–muted);margin-top:4px;}
-.wallet-actions{display:flex;gap:10px;align-self:center;}
+.wallet-box{background:linear-gradient(135deg,rgba(14,24,40,0.9),rgba(0,229,255,0.03));
+border:1px solid rgba(0,229,255,0.2);border-radius:8px;padding:28px;margin-bottom:24px;
+position:relative;overflow:hidden;}
+.wallet-box::before{content:‘BATTLE TREASURY’;position:absolute;top:12px;right:16px;
+font-size:.55rem;color:rgba(0,229,255,0.2);letter-spacing:4px;}
+.wallet-lbl{font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(–plasma);margin-bottom:8px;}
+.wallet-amt{font-family:‘Orbitron’,monospace;font-size:2.8rem;font-weight:700;
+color:var(–pulse);line-height:1;margin-bottom:6px;}
+.wallet-note{font-size:.78rem;color:var(–muted);}
 
 /* DASH TABS */
-.dash-tabs{display:flex;gap:2px;background:var(–border);border-radius:6px;padding:3px;margin-bottom:24px;overflow-x:auto;}
-.dash-tab{flex:1;min-width:90px;padding:10px 14px;text-align:center;border:none;background:transparent;
-border-radius:4px;font-family:‘Barlow’,sans-serif;font-size:.76rem;font-weight:700;
-letter-spacing:1.5px;text-transform:uppercase;color:var(–muted);cursor:pointer;transition:all .2s;white-space:nowrap;}
-.dash-tab.active{background:var(–card2);color:var(–gold);}
-.dash-panel{display:none;}
-.dash-panel.active{display:block;}
+.dash-tabs{display:flex;gap:2px;background:var(–border);border-radius:4px;
+padding:3px;margin-bottom:24px;overflow-x:auto;}
+.dtab{flex:1;min-width:90px;padding:10px 14px;text-align:center;border:none;
+background:transparent;border-radius:3px;font-family:‘Exo 2’,sans-serif;
+font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+color:var(–muted);cursor:pointer;transition:all .2s;white-space:nowrap;}
+.dtab.active{background:var(–surface);color:var(–amber);}
+.dpanel{display:none;}
+.dpanel.active{display:block;}
 
 /* HISTORY */
-.history-wrap{background:var(–card);border:1px solid var(–border);border-radius:6px;overflow:hidden;overflow-x:auto;}
-.history-table{width:100%;border-collapse:collapse;}
-.history-table th{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(–muted);
-font-weight:700;padding:12px 16px;text-align:left;border-bottom:1px solid var(–border);white-space:nowrap;}
-.history-table td{padding:14px 16px;border-bottom:1px solid rgba(30,45,61,.5);font-size:.88rem;vertical-align:middle;}
-.history-table tr:last-child td{border-bottom:none;}
-.history-table tr:hover td{background:rgba(255,255,255,.02);}
-.empty-state{text-align:center;padding:60px 24px;}
-.empty-icon{font-size:3rem;margin-bottom:14px;}
-.empty-title{font-family:‘Teko’,sans-serif;font-size:1.4rem;color:var(–muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
-.empty-sub{font-size:.85rem;color:var(–muted);}
+.history-wrap{background:var(–panel);border:1px solid var(–border);border-radius:6px;overflow:hidden;overflow-x:auto;}
+.htable{width:100%;border-collapse:collapse;min-width:500px;}
+.htable th{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(–muted);
+font-weight:700;padding:12px 16px;text-align:left;border-bottom:1px solid var(–border);
+background:var(–deep);white-space:nowrap;}
+.htable td{padding:14px 16px;border-bottom:1px solid rgba(30,58,95,0.4);font-size:.86rem;vertical-align:middle;}
+.htable tr:last-child td{border-bottom:none;}
+.htable tr:hover td{background:rgba(0,229,255,0.02);}
 
 /* PROFILE */
-.profile-form{background:var(–card);border:1px solid var(–border);border-radius:6px;padding:28px;}
-.profile-avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(–gold),var(–orange));
-display:flex;align-items:center;justify-content:center;font-family:‘Teko’,sans-serif;
-font-size:1.8rem;font-weight:700;color:#000;margin-bottom:20px;}
-.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-@media(max-width:560px){.profile-grid{grid-template-columns:1fr;}}
+.profile-form{background:var(–panel);border:1px solid var(–border);border-radius:6px;padding:28px;}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:560px){.pgrid{grid-template-columns:1fr;}}
+.p-avatar{width:72px;height:72px;border-radius:50%;
+background:linear-gradient(135deg,var(–amber),var(–nova));
+display:flex;align-items:center;justify-content:center;
+font-family:‘Orbitron’,monospace;font-size:1.6rem;font-weight:900;color:#000;
+margin-bottom:24px;box-shadow:0 0 24px rgba(255,184,48,0.3);}
 
 /* MODALS */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);
 z-index:2000;justify-content:center;align-items:center;padding:20px;}
 .modal-overlay.active{display:flex;}
-.modal{background:var(–card);border:1px solid var(–border);border-radius:10px;
-padding:32px;max-width:500px;width:100%;position:relative;animation:slideUp .25s ease;
-max-height:90vh;overflow-y:auto;}
-@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal{background:linear-gradient(135deg,var(–panel),var(–deep));
+border:1px solid var(–border2);border-radius:10px;
+padding:32px;max-width:520px;width:100%;position:relative;
+animation:slideUp .25s ease;max-height:90vh;overflow-y:auto;}
+.modal::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;
+background:linear-gradient(90deg,transparent,var(–plasma),var(–amber),transparent);}
+@keyframes slideUp{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
 .modal-close{position:absolute;top:14px;right:18px;background:none;border:none;
-color:var(–muted);font-size:1.5rem;cursor:pointer;line-height:1;}
-.modal h3{font-family:‘Teko’,sans-serif;font-size:1.5rem;color:var(–gold);
+color:var(–muted);font-size:1.5rem;cursor:pointer;line-height:1;transition:color .2s;}
+.modal-close:hover{color:var(–nova);}
+.modal h3{font-family:‘Orbitron’,monospace;font-size:1.2rem;color:var(–amber);
 letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
-.modal-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(–border);font-size:.9rem;}
+.modal-row{display:flex;justify-content:space-between;padding:11px 0;
+border-bottom:1px solid var(–border);font-size:.88rem;}
 .modal-row:last-of-type{border-bottom:none;}
 .modal-row span:first-child{color:var(–muted);}
-.modal-row span:last-child{font-weight:600;}
+.modal-row span:last-child{font-weight:700;}
+
+/* PAY NOTE */
+.pay-note{background:rgba(255,184,48,0.06);border:1px solid rgba(255,184,48,0.15);
+border-radius:4px;padding:14px;margin-bottom:16px;font-size:.84rem;
+color:var(–muted);line-height:1.7;}
+.pay-note strong{color:var(–amber);}
 
 /* TOAST */
 .toast{display:none;position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
-background:var(–gold);color:#000;padding:13px 26px;border-radius:5px;
-font-weight:700;font-size:.88rem;z-index:3000;animation:fadeUp .3s ease;
-white-space:nowrap;max-width:calc(100vw - 40px);text-align:center;}
+background:linear-gradient(135deg,var(–amber),var(–amber2));color:#000;
+padding:13px 28px;border-radius:3px;font-weight:700;font-size:.85rem;z-index:3000;
+animation:fadeUp .3s ease;white-space:nowrap;max-width:calc(100vw - 40px);
+text-align:center;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
 @keyframes fadeUp{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
 /* SPINNER */
-.spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(0,0,0,.3);
-border-top-color:#000;border-radius:50%;animation:s .6s linear infinite;vertical-align:middle;}
-@keyframes s{to{transform:rotate(360deg)}}
-.spin-w{border-color:rgba(255,255,255,.2);border-top-color:#fff;}
+.spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(0,0,0,0.2);
+border-top-color:#000;border-radius:50%;animation:sp .6s linear infinite;vertical-align:middle;}
+.spin-w{border-color:rgba(255,255,255,0.2);border-top-color:var(–plasma);}
+@keyframes sp{to{transform:rotate(360deg)}}
 
 /* FOOTER */
-footer{position:relative;z-index:1;text-align:center;padding:36px 24px;
-border-top:1px solid var(–border);color:var(–muted);font-size:.83rem;margin-top:40px;}
-.logo-f{font-family:‘Teko’,sans-serif;font-size:1.2rem;letter-spacing:3px;
-background:linear-gradient(135deg,var(–gold),var(–orange));-webkit-background-clip:text;
--webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:10px;}
-
-/* PAY NOTE */
-.pay-note{background:rgba(255,210,52,.06);border:1px solid rgba(255,210,52,.15);
-border-radius:4px;padding:14px;margin-bottom:16px;font-size:.85rem;color:var(–muted);line-height:1.6;}
-.pay-note strong{color:var(–gold);}
+footer{position:relative;z-index:1;text-align:center;padding:40px 28px;
+border-top:1px solid var(–border);color:var(–dim);font-size:.8rem;margin-top:40px;}
+.footer-logo{font-family:‘Orbitron’,monospace;font-size:1.1rem;font-weight:900;letter-spacing:4px;
+background:linear-gradient(135deg,var(–amber),var(–plasma));
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+display:block;margin-bottom:12px;}
 </style>
 
 </head>
 <body>
-<div class="bg-glow"></div>
+<div class="stars" id="stars"></div>
 
 <!-- LOADING -->
 
-<div id="loading-screen">
-  <div class="loading-logo">⚔ PUBGBATTLE</div>
-  <div class="loading-bar"><div class="loading-fill"></div></div>
+<div id="loading">
+  <div class="load-logo">⚔ PUBGBATTLE</div>
+  <div class="load-bar"><div class="load-fill"></div></div>
+  <div class="load-status">Initializing Battle Systems...</div>
 </div>
 
 <!-- NAV -->
@@ -304,221 +476,232 @@ border-radius:4px;padding:14px;margin-bottom:16px;font-size:.85rem;color:var(–
 <nav>
   <div class="logo" onclick="showPage('home')">⚔ PUBGBATTLE</div>
   <ul class="nav-links">
-    <li><a onclick="gotoEvents()">Events</a></li>
-    <li><a onclick="gotoHow()">How It Works</a></li>
-    <li><a onclick="gotoWinners()">Winners</a></li>
+    <li><a onclick="gotoSection('events-sec')">Battles</a></li>
+    <li><a onclick="gotoSection('how-sec')">Briefing</a></li>
+    <li><a onclick="gotoSection('winners-sec')">Hall of Glory</a></li>
   </ul>
   <div class="nav-right" id="nav-auth">
-    <button class="btn btn-outline btn-sm" onclick="showPage('auth');switchAuthTab('login')">Login</button>
-    <button class="btn btn-gold btn-sm" onclick="showPage('auth');switchAuthTab('signup')">Sign Up</button>
+    <button class="btn btn-ghost btn-sm" onclick="showPage('auth');switchAuthTab('login')">Login</button>
+    <button class="btn btn-war btn-sm" onclick="showPage('auth');switchAuthTab('signup')">Enlist Now</button>
   </div>
   <div class="nav-right" id="nav-user" style="display:none">
-    <button class="btn btn-outline btn-sm" onclick="showPage('dashboard')">My Account</button>
-    <button class="btn btn-ghost btn-sm" onclick="doSignOut()">Logout</button>
+    <button class="btn btn-ghost btn-sm" onclick="showPage('dashboard')">⚔ Command</button>
+    <button class="btn btn-ghost btn-sm" onclick="doSignOut()">Exit</button>
   </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- ══ HOME ══ -->
+<!-- MOBILE NAV -->
+
+<div class="mobile-nav" id="mobile-nav">
+  <a onclick="gotoSection('events-sec');closeMobileNav()">⚔ Active Battles</a>
+  <a onclick="gotoSection('how-sec');closeMobileNav()">📋 Briefing Room</a>
+  <a onclick="gotoSection('winners-sec');closeMobileNav()">🏆 Hall of Glory</a>
+  <div class="mobile-nav-btns" id="mobile-auth-btns">
+    <button class="btn btn-ghost btn-sm btn-full" onclick="showPage('auth');switchAuthTab('login');closeMobileNav()">Login</button>
+    <button class="btn btn-war btn-sm btn-full" onclick="showPage('auth');switchAuthTab('signup');closeMobileNav()">Enlist</button>
+  </div>
+  <div style="display:none" id="mobile-user-btns">
+    <button class="btn btn-ghost btn-sm btn-full" onclick="showPage('dashboard');closeMobileNav()">⚔ Command</button>
+    <button class="btn btn-ghost btn-sm btn-full" onclick="doSignOut();closeMobileNav()">Exit</button>
+  </div>
+</div>
+
+<!-- ════ HOME ════ -->
 
 <div id="page-home" class="page active">
   <div class="hero">
-    <div class="hero-eyebrow"><span class="live-dot"></span>Live Tournaments · Real Money Prizes</div>
-    <h1>COMPETE.<br><span class="grad">WIN REAL</span>MONEY.</h1>
-    <p class="hero-sub">Daily PUBG Mobile match events with real cash prizes. Solo, Duo & Squad modes. Entry from ₹29.</p>
+    <div class="hero-tag"><span class="live-dot"></span>Live Arena · Real Victory Rewards</div>
+    <h1>
+      <span class="line-dim">Enter The</span>
+      <span class="line-main">BATTLE<br>ARENA</span>
+      <span class="line-sub">Dominate · Conquer · Rise</span>
+    </h1>
+    <p class="hero-desc">India's most intense PUBG Mobile tournament platform. Deploy into daily battles across <strong>Solo, Duo & Squad</strong> combat zones. Every kill counts. Every victory is rewarded.</p>
     <div class="hero-cta">
-      <button class="btn btn-gold" onclick="gotoEvents()">View Events</button>
-      <button class="btn btn-outline" onclick="gotoHow()">How It Works</button>
+      <button class="btn btn-war" onclick="gotoSection('events-sec')">⚔ View Active Battles</button>
+      <button class="btn btn-ghost" onclick="gotoSection('how-sec')">📋 Read Briefing</button>
     </div>
-    <div class="stats">
-      <div class="stat"><div class="stat-num">₹2.4L+</div><div class="stat-label">Paid Out</div></div>
-      <div class="stat"><div class="stat-num">3,800+</div><div class="stat-label">Players</div></div>
-      <div class="stat"><div class="stat-num">240+</div><div class="stat-label">Matches</div></div>
-      <div class="stat"><div class="stat-num">Daily</div><div class="stat-label">Events</div></div>
+    <div class="stats-row">
+      <div class="stat-item"><span class="stat-num">₹2.4L+</span><span class="stat-lbl">Rewards Paid</span></div>
+      <div class="stat-item"><span class="stat-num">3,800+</span><span class="stat-lbl">Warriors</span></div>
+      <div class="stat-item"><span class="stat-num">240+</span><span class="stat-lbl">Battles Fought</span></div>
+      <div class="stat-item"><span class="stat-num">Daily</span><span class="stat-lbl">New Events</span></div>
     </div>
   </div>
 
+  <!-- EVENTS -->
+
   <div class="section" id="events-sec">
-    <div class="sec-label">Live & Upcoming</div>
-    <div class="sec-title">Active <span>Events</span></div>
+    <div class="sec-eyebrow">Active Operations</div>
+    <div class="sec-title">Live <span class="accent">Battle Events</span></div>
     <div class="events-grid" id="events-grid"></div>
   </div>
 
   <div class="divider"></div>
 
+  <!-- HOW IT WORKS -->
+
   <div class="section" id="how-sec">
-    <div class="sec-label">Guide</div>
-    <div class="sec-title">How It <span>Works</span></div>
-    <div class="steps-grid">
-      <div class="step"><div class="step-num">01</div><div class="step-icon">📝</div><div class="step-title">Register</div><p>Create your account, pick an event and fill your PUBG details.</p></div>
-      <div class="step"><div class="step-num">02</div><div class="step-icon">💸</div><div class="step-title">Pay Entry</div><p>Pay the entry fee via UPI. Send screenshot on Telegram as proof.</p></div>
-      <div class="step"><div class="step-num">03</div><div class="step-icon">🎮</div><div class="step-title">Get Room ID</div><p>Room ID & password sent on Telegram before match time.</p></div>
-      <div class="step"><div class="step-num">04</div><div class="step-icon">🏆</div><div class="step-title">Win & Get Paid</div><p>Winners receive prize money to UPI/bank within 24 hours.</p></div>
+    <div class="sec-eyebrow">Mission Briefing</div>
+    <div class="sec-title">Your <span class="accent">Battle Plan</span></div>
+    <div class="how-grid">
+      <div class="how-step" data-num="01"><span class="how-icon">🎯</span><div class="how-title">Enlist</div><p class="how-desc">Create your warrior profile with PUBG UID and IGN. Choose your battle and secure your slot.</p></div>
+      <div class="how-step" data-num="02"><span class="how-icon">💰</span><div class="how-title">Deploy Entry</div><p class="how-desc">Pay the entry fee via UPI. Send screenshot on Telegram to confirm your deployment.</p></div>
+      <div class="how-step" data-num="03"><span class="how-icon">📡</span><div class="how-title">Receive Intel</div><p class="how-desc">Room ID & password transmitted via Telegram before battle starts. Zero tolerance for late joins.</p></div>
+      <div class="how-step" data-num="04"><span class="how-icon">🏆</span><div class="how-title">Claim Victory</div><p class="how-desc">Top warriors receive battle rewards to their UPI within 24 hours. No delays. No excuses.</p></div>
     </div>
   </div>
 
   <div class="divider"></div>
 
+  <!-- WINNERS -->
+
   <div class="section" id="winners-sec">
-    <div class="sec-label">Hall of Fame</div>
-    <div class="sec-title">Recent <span>Winners</span></div>
+    <div class="sec-eyebrow">Hall of Glory</div>
+    <div class="sec-title">Battle <span class="accent">Champions</span></div>
     <div class="winners-grid" id="winners-grid"></div>
   </div>
 
-  <div class="tg-banner">
-    <div class="tg-text">
-      <h2>Join Our Telegram Channel</h2>
-      <p>Get room IDs, winner announcements, new event alerts and exclusive offers.</p>
+  <!-- TG BANNER -->
+
+  <div class="tg-section">
+    <div>
+      <div class="tg-title">Join the War Channel</div>
+      <p class="tg-desc">Receive battle intel, room IDs, glory announcements and exclusive warrior offers. Stay locked in.</p>
     </div>
-    <a href="https://t.me/pubgbattle" target="_blank" class="btn btn-tg">✈ Join Channel</a>
+    <a href="https://t.me/pubgbattle" target="_blank" class="btn btn-tg">✈ Join Telegram</a>
   </div>
 
   <footer>
-    <span class="logo-f">⚔ PUBGBATTLE</span>
-    pubgbattle.online &nbsp;·&nbsp; Support via Telegram<br>
-    <span style="font-size:.75rem;margin-top:6px;display:block">© 2025 PUGBBattle · For players 18+ · Play responsibly</span>
+    <span class="footer-logo">⚔ PUBGBATTLE</span>
+    pubgbattle.online &nbsp;·&nbsp; Battle Support via Telegram<br>
+    <span style="margin-top:8px;display:block;font-size:.72rem">© 2025 PUGBBattle · Warriors 18+ Only · Battle Responsibly</span>
   </footer>
 </div>
 
-<!-- ══ AUTH ══ -->
+<!-- ════ AUTH ════ -->
 
 <div id="page-auth" class="page">
   <div class="auth-wrap">
     <div class="auth-box">
       <div class="auth-tabs">
         <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Login</button>
-        <button class="auth-tab" id="tab-signup" onclick="switchAuthTab('signup')">Sign Up</button>
+        <button class="auth-tab" id="tab-signup" onclick="switchAuthTab('signup')">Enlist</button>
       </div>
       <div class="auth-body">
-
-```
-    <!-- LOGIN -->
-    <div id="auth-login">
-      <div class="auth-title">Welcome Back</div>
-      <div class="auth-sub">Login to your PUBG Battle account</div>
-      <div class="msg-box msg-error" id="login-err"></div>
-      <div class="msg-box msg-success" id="login-ok"></div>
-
-      <!-- Phone OTP -->
-      <div class="field">
-        <label>Phone Number</label>
-        <div class="phone-row">
-          <input class="phone-code" value="+91" readonly style="color:var(--muted);cursor:default">
-          <input type="tel" id="lp-phone" placeholder="9876543210" maxlength="10" style="flex:1">
+        <!-- LOGIN -->
+        <div id="auth-login">
+          <div class="auth-title">Welcome Back, Warrior</div>
+          <div class="auth-sub">Return to the battlefield. Your squad is waiting.</div>
+          <div class="msg-box msg-err" id="login-err"></div>
+          <div class="msg-box msg-ok" id="login-ok"></div>
+          <div class="field"><label>Phone Number</label>
+            <div class="phone-row">
+              <input class="phone-code" value="+91" readonly>
+              <input type="tel" id="lp-phone" placeholder="9876543210" maxlength="10" style="flex:1">
+            </div>
+          </div>
+          <div id="lp-otp-row" style="display:none">
+            <div class="field"><label>OTP Code</label><input type="number" id="lp-otp" placeholder="6-digit OTP"></div>
+            <button class="btn btn-war btn-full" style="margin-bottom:10px" onclick="verifyOTP()"><span id="lp-verify-txt">Verify & Enter</span></button>
+          </div>
+          <div id="lp-send-row">
+            <button class="btn btn-ghost btn-full" style="margin-bottom:4px" onclick="sendOTP()"><span id="lp-send-txt">Send OTP</span></button>
+          </div>
+          <div class="or-div"><span>or use email</span></div>
+          <div class="field"><label>Email</label><input type="email" id="lp-email" placeholder="warrior@email.com"></div>
+          <div class="field"><label>Password</label><input type="password" id="lp-pass" placeholder="••••••••"></div>
+          <button class="btn btn-war btn-full" style="margin-bottom:12px" onclick="loginEmail()"><span id="lp-email-txt">Enter Arena</span></button>
+          <div class="or-div"><span>or</span></div>
+          <button class="btn btn-google" onclick="loginGoogle()">
+            <svg class="gicon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Continue with Google
+          </button>
+          <div class="auth-switch">New warrior? <a onclick="switchAuthTab('signup')">Enlist Here</a></div>
+        </div>
+        <!-- SIGNUP -->
+        <div id="auth-signup" style="display:none">
+          <div class="auth-title">Enlist, Warrior</div>
+          <div class="auth-sub">Join the elite. Compete. Dominate. Earn your glory.</div>
+          <div class="msg-box msg-err" id="su-err"></div>
+          <div class="msg-box msg-ok" id="su-ok"></div>
+          <div class="field"><label>Callsign (Name)</label><input type="text" id="su-name" placeholder="Your name"></div>
+          <div class="field"><label>Email</label><input type="email" id="su-email" placeholder="warrior@email.com"></div>
+          <div class="field"><label>Password</label><input type="password" id="su-pass" placeholder="Min 6 characters"></div>
+          <div class="field"><label>PUBG In-Game Name (IGN)</label><input type="text" id="su-ign" placeholder="YourIGN123"></div>
+          <div class="field"><label>PUBG UID</label><input type="text" id="su-uid" placeholder="519230012"></div>
+          <div class="field"><label>WhatsApp</label>
+            <div class="phone-row">
+              <input class="phone-code" value="+91" readonly>
+              <input type="tel" id="su-phone" placeholder="9876543210" maxlength="10" style="flex:1">
+            </div>
+          </div>
+          <button class="btn btn-war btn-full" style="margin-bottom:12px" onclick="signupEmail()"><span id="su-txt">⚔ Join the Battle</span></button>
+          <div class="or-div"><span>or</span></div>
+          <button class="btn btn-google" onclick="loginGoogle()">
+            <svg class="gicon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Enlist with Google
+          </button>
+          <div class="auth-switch">Already deployed? <a onclick="switchAuthTab('login')">Login</a></div>
         </div>
       </div>
-      <div id="lp-otp-row" style="display:none">
-        <div class="field"><label>Enter OTP</label><input type="number" id="lp-otp" placeholder="6-digit OTP"></div>
-        <button class="btn btn-gold btn-full" style="margin-bottom:10px" onclick="verifyOTP()"><span id="lp-verify-txt">Verify OTP</span></button>
-      </div>
-      <div id="lp-send-row">
-        <button class="btn btn-outline btn-full" style="margin-bottom:4px" onclick="sendOTP()"><span id="lp-send-txt">Send OTP</span></button>
-      </div>
-
-      <div class="or-div"><span>OR</span></div>
-
-      <div class="field"><label>Email</label><input type="email" id="lp-email" placeholder="you@email.com"></div>
-      <div class="field"><label>Password</label><input type="password" id="lp-pass" placeholder="••••••••"></div>
-      <button class="btn btn-gold btn-full" style="margin-bottom:12px" onclick="loginEmail()"><span id="lp-email-txt">Login with Email</span></button>
-
-      <div class="or-div"><span>OR</span></div>
-      <button class="btn btn-google" onclick="loginGoogle()">
-        <svg class="google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-        Continue with Google
-      </button>
-      <div class="auth-switch">No account? <a onclick="switchAuthTab('signup')">Sign Up</a></div>
-    </div>
-
-    <!-- SIGNUP -->
-    <div id="auth-signup" style="display:none">
-      <div class="auth-title">Create Account</div>
-      <div class="auth-sub">Join PUBG Battle and start winning</div>
-      <div class="msg-box msg-error" id="su-err"></div>
-      <div class="msg-box msg-success" id="su-ok"></div>
-      <div class="field"><label>Full Name</label><input type="text" id="su-name" placeholder="Your name"></div>
-      <div class="field"><label>Email</label><input type="email" id="su-email" placeholder="you@email.com"></div>
-      <div class="field"><label>Password</label><input type="password" id="su-pass" placeholder="Min 6 characters"></div>
-      <div class="field"><label>PUBG In-Game Name (IGN)</label><input type="text" id="su-ign" placeholder="YourIGN123"></div>
-      <div class="field"><label>PUBG UID</label><input type="text" id="su-uid" placeholder="519230012"></div>
-      <div class="field"><label>WhatsApp Number</label>
-        <div class="phone-row">
-          <input class="phone-code" value="+91" readonly style="color:var(--muted);cursor:default">
-          <input type="tel" id="su-phone" placeholder="9876543210" maxlength="10" style="flex:1">
-        </div>
-      </div>
-      <button class="btn btn-gold btn-full" style="margin-bottom:12px" onclick="signupEmail()"><span id="su-txt">Create Account</span></button>
-      <div class="or-div"><span>OR</span></div>
-      <button class="btn btn-google" onclick="loginGoogle()">
-        <svg class="google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-        Sign up with Google
-      </button>
-      <div class="auth-switch">Already have an account? <a onclick="switchAuthTab('login')">Login</a></div>
     </div>
   </div>
 </div>
-```
 
-  </div>
-</div>
-
-<!-- ══ DASHBOARD ══ -->
+<!-- ════ DASHBOARD ════ -->
 
 <div id="page-dashboard" class="page">
   <div class="dash-wrap">
     <div class="dash-header">
       <div>
-        <div style="font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Player Dashboard</div>
-        <div class="dash-greeting">Welcome, <span id="dash-name">Player</span></div>
+        <div class="dash-callsign">Warrior Profile · Active</div>
+        <div class="dash-name">Commander <span id="dash-name">—</span></div>
       </div>
-      <button class="btn btn-gold btn-sm" onclick="showPage('home');setTimeout(gotoEvents,100)">+ Join a Match</button>
+      <button class="btn btn-war btn-sm" onclick="showPage('home');setTimeout(()=>gotoSection('events-sec'),100)">⚔ Deploy to Battle</button>
     </div>
-
-```
-<div class="dash-cards">
-  <div class="dash-card"><div class="dash-card-lbl">Matches Joined</div><div class="dash-card-val c-orange" id="d-matches">0</div></div>
-  <div class="dash-card"><div class="dash-card-lbl">Total Paid</div><div class="dash-card-val c-gold" id="d-paid">₹0</div></div>
-  <div class="dash-card"><div class="dash-card-lbl">Total Won</div><div class="dash-card-val c-green" id="d-won">₹0</div></div>
-  <div class="dash-card"><div class="dash-card-lbl">Win Rate</div><div class="dash-card-val" id="d-rate">0%</div></div>
-</div>
-
-<div class="wallet-box">
-  <div class="wallet-top">
-    <div>
-      <div class="wallet-lbl">Wallet Balance</div>
-      <div class="wallet-amt" id="d-wallet">₹0</div>
-      <div class="wallet-note">Winnings credited here within 24hrs of match result</div>
+    <div class="dash-cards">
+      <div class="dash-card c1"><div class="dc-lbl">Battles Fought</div><div class="dc-val amber" id="d-matches">0</div></div>
+      <div class="dash-card c2"><div class="dc-lbl">Glory Earned</div><div class="dc-val pulse" id="d-won">₹0</div></div>
+      <div class="dash-card c3"><div class="dc-lbl">Entry Deployed</div><div class="dc-val plasma" id="d-paid">₹0</div></div>
+      <div class="dash-card c4"><div class="dc-lbl">Kill Rate</div><div class="dc-val nova" id="d-rate">0%</div></div>
     </div>
-    <div class="wallet-actions">
-      <button class="btn btn-outline btn-sm" onclick="openWithdraw()">Withdraw</button>
+    <div class="wallet-box">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
+        <div>
+          <div class="wallet-lbl">⚡ Battle Treasury</div>
+          <div class="wallet-amt" id="d-wallet">₹0</div>
+          <div class="wallet-note">Winnings credited within 24hrs of battle results</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="openWithdraw()" style="align-self:center">Withdraw</button>
+      </div>
     </div>
-  </div>
-</div>
-
-<div class="dash-tabs">
-  <button class="dash-tab active" onclick="switchTab('registrations')">Registrations</button>
-  <button class="dash-tab" onclick="switchTab('payments')">Payments</button>
-  <button class="dash-tab" onclick="switchTab('results')">Results</button>
-  <button class="dash-tab" onclick="switchTab('profile')">Profile</button>
-</div>
-
-<div id="tp-registrations" class="dash-panel active"><div class="history-wrap" id="reg-list"></div></div>
-<div id="tp-payments" class="dash-panel"><div class="history-wrap" id="pay-list"></div></div>
-<div id="tp-results" class="dash-panel"><div class="history-wrap" id="res-list"></div></div>
-<div id="tp-profile" class="dash-panel">
-  <div class="profile-form">
-    <div class="profile-avatar" id="p-avatar">H</div>
-    <div class="profile-grid">
-      <div class="field"><label>Full Name</label><input type="text" id="p-name"></div>
-      <div class="field"><label>Email</label><input type="email" id="p-email" readonly style="opacity:.6"></div>
-      <div class="field"><label>PUBG IGN</label><input type="text" id="p-ign"></div>
-      <div class="field"><label>PUBG UID</label><input type="text" id="p-uid"></div>
-      <div class="field"><label>WhatsApp</label><input type="tel" id="p-phone"></div>
-      <div class="field"><label>UPI ID (for winnings)</label><input type="text" id="p-upi" placeholder="yourname@upi"></div>
+    <div class="dash-tabs">
+      <button class="dtab active" onclick="switchDTab('reg')">Battle Log</button>
+      <button class="dtab" onclick="switchDTab('pay')">Payments</button>
+      <button class="dtab" onclick="switchDTab('res')">Results</button>
+      <button class="dtab" onclick="switchDTab('profile')">Profile</button>
     </div>
-    <button class="btn btn-gold" onclick="saveProfile()">Save Profile</button>
-  </div>
-</div>
-```
-
+    <div id="dp-reg" class="dpanel active"><div class="history-wrap" id="reg-list"></div></div>
+    <div id="dp-pay" class="dpanel"><div class="history-wrap" id="pay-list"></div></div>
+    <div id="dp-res" class="dpanel"><div class="history-wrap" id="res-list"></div></div>
+    <div id="dp-profile" class="dpanel">
+      <div class="profile-form">
+        <div class="p-avatar" id="p-avatar">W</div>
+        <div class="pgrid">
+          <div class="field"><label>Callsign (Name)</label><input type="text" id="p-name"></div>
+          <div class="field"><label>Email</label><input type="email" id="p-email" readonly style="opacity:.5;cursor:default"></div>
+          <div class="field"><label>PUBG IGN</label><input type="text" id="p-ign"></div>
+          <div class="field"><label>PUBG UID</label><input type="text" id="p-uid"></div>
+          <div class="field"><label>WhatsApp</label><input type="tel" id="p-phone"></div>
+          <div class="field"><label>UPI ID (for rewards)</label><input type="text" id="p-upi" placeholder="yourname@upi"></div>
+        </div>
+        <button class="btn btn-war" onclick="saveProfile()">Save Profile</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -527,10 +710,10 @@ border-radius:4px;padding:14px;margin-bottom:16px;font-size:.85rem;color:var(–
 <div class="modal-overlay" id="ev-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('ev-modal')">×</button>
-    <h3 id="ev-modal-title">Event</h3>
-    <div id="ev-modal-body"></div>
-    <div style="margin-top:20px;display:flex;gap:10px">
-      <button class="btn btn-gold btn-full" onclick="openRegModal()">Register Now</button>
+    <h3 id="ev-title">Mission Details</h3>
+    <div id="ev-body"></div>
+    <div style="margin-top:20px">
+      <button class="btn btn-war btn-full" onclick="openRegModal()">⚔ Deploy to This Battle</button>
     </div>
   </div>
 </div>
@@ -540,29 +723,29 @@ border-radius:4px;padding:14px;margin-bottom:16px;font-size:.85rem;color:var(–
 <div class="modal-overlay" id="reg-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('reg-modal')">×</button>
-    <h3>Register for Match</h3>
-    <div class="msg-box msg-error" id="reg-err"></div>
+    <h3>Deploy to Battle</h3>
+    <div class="msg-box msg-err" id="reg-err"></div>
     <div id="reg-form">
       <div class="field"><label>PUBG IGN</label><input type="text" id="r-ign" placeholder="Your in-game name"></div>
       <div class="field"><label>PUBG UID</label><input type="text" id="r-uid" placeholder="519230012"></div>
       <div class="field"><label>WhatsApp</label>
         <div class="phone-row">
-          <input class="phone-code" value="+91" readonly style="color:var(--muted)">
+          <input class="phone-code" value="+91" readonly>
           <input type="tel" id="r-phone" placeholder="9876543210" maxlength="10" style="flex:1">
         </div>
       </div>
-      <div class="field"><label>Mode</label>
+      <div class="field"><label>Combat Mode</label>
         <select id="r-mode"><option>Solo</option><option>Duo</option><option>Squad</option></select>
       </div>
       <div class="pay-note">
-        <strong>Payment:</strong> After registering, pay the entry fee via UPI to <strong style="color:var(--text)">pubgbattle@upi</strong> and send screenshot on Telegram to confirm your slot.
+        <strong>Entry Fee Payment:</strong> After deploying, send the entry fee via UPI to <strong style="color:var(--text)">pubgbattle@upi</strong> and forward the screenshot on Telegram to activate your slot.
       </div>
-      <button class="btn btn-gold btn-full" onclick="submitReg()"><span id="r-btn">Confirm Registration</span></button>
+      <button class="btn btn-war btn-full" onclick="submitReg()"><span id="r-btn">⚔ Confirm Deployment</span></button>
     </div>
     <div id="reg-done" style="display:none;text-align:center;padding:20px 0">
       <div style="font-size:3rem;margin-bottom:14px">✅</div>
-      <div style="font-family:'Teko',sans-serif;font-size:1.5rem;letter-spacing:2px;color:var(--green);margin-bottom:8px">REGISTERED!</div>
-      <div style="font-size:.88rem;color:var(--muted);line-height:1.7">Slot reserved! Pay entry fee and send screenshot on Telegram to confirm.</div>
+      <div style="font-family:'Orbitron',monospace;font-size:1.2rem;letter-spacing:3px;color:var(--pulse);margin-bottom:10px">DEPLOYED!</div>
+      <div style="font-size:.86rem;color:var(--muted);line-height:1.7">Slot secured! Pay entry fee and send screenshot on Telegram to activate.</div>
       <a href="https://t.me/pubgbattle" target="_blank" class="btn btn-tg btn-full" style="margin-top:20px">✈ Open Telegram</a>
     </div>
   </div>
@@ -573,11 +756,11 @@ border-radius:4px;padding:14px;margin-bottom:16px;font-size:.85rem;color:var(–
 <div class="modal-overlay" id="wd-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('wd-modal')">×</button>
-    <h3>Withdraw Winnings</h3>
-    <div style="font-size:.85rem;color:var(--muted);margin-bottom:20px;line-height:1.6">Processed within 24hrs to your UPI ID.</div>
+    <h3>Withdraw Rewards</h3>
+    <div style="font-size:.84rem;color:var(--muted);margin-bottom:20px;line-height:1.6">Battle rewards processed within 24hrs to your UPI.</div>
     <div class="field"><label>Amount (₹)</label><input type="number" id="wd-amt" placeholder="Min ₹100"></div>
     <div class="field"><label>UPI ID</label><input type="text" id="wd-upi" placeholder="yourname@upi"></div>
-    <button class="btn btn-gold btn-full" onclick="submitWithdraw()">Request Withdrawal</button>
+    <button class="btn btn-war btn-full" onclick="submitWithdraw()">Request Withdrawal</button>
   </div>
 </div>
 
@@ -591,7 +774,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
   onAuthStateChanged, signOut, updateProfile }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc, collection, addDoc,
-  query, where, getDocs, orderBy, serverTimestamp, updateDoc }
+  query, where, getDocs, orderBy, serverTimestamp, updateDoc, increment }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const app = initializeApp({
@@ -605,14 +788,13 @@ const app = initializeApp({
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-/* ── DATA ── */
 const EVENTS = [
-  {id:'e1',name:"Sunday Solo Showdown",mode:"Solo · Erangel",accent:"",entry:49,prize:2000,date:"Sun 15 Dec · 8PM IST",slots:96,taken:72,status:"open"},
-  {id:'e2',name:"Squad War #14",mode:"Squad · Miramar",accent:"red",entry:99,prize:5000,date:"Sat 14 Dec · 7PM IST",slots:25,taken:25,status:"full"},
-  {id:'e3',name:"Pro Duo Cup",mode:"Duo · Vikendi",accent:"blue",entry:79,prize:3000,date:"Mon 16 Dec · 9PM IST",slots:50,taken:18,status:"open"},
-  {id:'e4',name:"Late Night Grind",mode:"Solo · Sanhok",accent:"",entry:29,prize:1000,date:"Daily · 11PM IST",slots:64,taken:10,status:"open"},
-  {id:'e5',name:"Weekend Warriors",mode:"Squad · Erangel",accent:"red",entry:149,prize:8000,date:"Sat 21 Dec · 6PM IST",slots:20,taken:0,status:"soon"},
-  {id:'e6',name:"Flash Duo Match",mode:"Duo · Livik",accent:"blue",entry:49,prize:1500,date:"Fri 13 Dec · 10PM IST",slots:30,taken:28,status:"open"},
+  {id:'e1',name:"Sunday Solo Showdown",mode:"Solo · Erangel",stripe:"amber",entry:49,prize:2000,date:"Sun 15 Dec · 8PM IST",slots:96,taken:72,status:"open"},
+  {id:'e2',name:"Squad War #14",mode:"Squad · Miramar",stripe:"nova",entry:99,prize:5000,date:"Sat 14 Dec · 7PM IST",slots:25,taken:25,status:"full"},
+  {id:'e3',name:"Pro Duo Cup",mode:"Duo · Vikendi",stripe:"plasma",entry:79,prize:3000,date:"Mon 16 Dec · 9PM IST",slots:50,taken:18,status:"open"},
+  {id:'e4',name:"Late Night Grind",mode:"Solo · Sanhok",stripe:"amber",entry:29,prize:1000,date:"Daily · 11PM IST",slots:64,taken:10,status:"open"},
+  {id:'e5',name:"Weekend Warriors",mode:"Squad · Erangel",stripe:"nova",entry:149,prize:8000,date:"Sat 21 Dec · 6PM IST",slots:20,taken:0,status:"soon"},
+  {id:'e6',name:"Flash Duo Match",mode:"Duo · Livik",stripe:"plasma",entry:49,prize:1500,date:"Fri 13 Dec · 10PM IST",slots:30,taken:28,status:"open"},
 ];
 const WINNERS_DATA = [
   {event:"Sunday Solo Showdown",pos:"🥇",name:"Rahul Sharma",ign:"RahulKing99",prize:2000,date:"08 Dec"},
@@ -621,40 +803,56 @@ const WINNERS_DATA = [
   {event:"Late Night Grind",pos:"🥇",name:"NightHunter",ign:"HunterX99",prize:1000,date:"05 Dec"},
 ];
 
-let CU = null, CE = null, OTPResult = null;
+let CU=null, CE=null, OTPResult=null;
 
-/* ── INIT ── */
+// Init
 window.addEventListener('load',()=>{
-  renderEvents(); renderWinners();
-  setTimeout(()=>document.getElementById('loading-screen').style.display='none',1600);
+  generateStars();
+  renderEvents();
+  renderWinners();
+  setTimeout(()=>document.getElementById('loading').style.display='none',2000);
 });
 
 onAuthStateChanged(auth, async u=>{
-  CU = u;
-  document.getElementById('nav-auth').style.display = u?'none':'flex';
-  document.getElementById('nav-user').style.display = u?'flex':'none';
+  CU=u;
+  document.getElementById('nav-auth').style.display=u?'none':'flex';
+  document.getElementById('nav-user').style.display=u?'flex':'none';
+  document.getElementById('mobile-auth-btns').style.display=u?'none':'flex';
+  document.getElementById('mobile-user-btns').style.display=u?'flex':'none';
   if(u) await loadDash(u);
 });
 
-/* ── RENDER ── */
+function generateStars(){
+  const c=document.getElementById('stars');
+  for(let i=0;i<120;i++){
+    const s=document.createElement('div');
+    s.className='star';
+    const size=Math.random()*2+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--o:${Math.random()*0.6+0.1};--d:${Math.random()*4+2}s;--delay:-${Math.random()*4}s;`;
+    c.appendChild(s);
+  }
+}
+
 function renderEvents(){
-  document.getElementById('events-grid').innerHTML = EVENTS.map(e=>{
-    const pct=Math.round(e.taken/e.slots*100), danger=pct>=80;
-    const sc={open:'badge-open',full:'badge-full',soon:'badge-soon'};
-    const sl={open:'Open',full:'Full',soon:'Coming Soon'};
+  const sc={open:'b-open',full:'b-full',soon:'b-soon'};
+  const sl={open:'Recruiting',full:'Full',soon:'Incoming'};
+  document.getElementById('events-grid').innerHTML=EVENTS.map(e=>{
+    const pct=Math.round(e.taken/e.slots*100),hot=pct>=80;
     return `<div class="ecard" onclick="openEvent('${e.id}')">
-      <div class="ecard-accent ${e.accent}"></div>
+      <div class="ecard-stripe ${e.stripe}"></div>
       <div class="ecard-body">
         <div class="ecard-mode">${e.mode}</div>
         <div class="ecard-name">${e.name}</div>
         <div class="ecard-rows">
-          <div class="ecard-row"><span class="ecard-k">Prize Pool</span><span class="ecard-v gold">₹${e.prize.toLocaleString()}</span></div>
-          <div class="ecard-row"><span class="ecard-k">Entry Fee</span><span class="ecard-v">₹${e.entry}</span></div>
-          <div class="ecard-row"><span class="ecard-k">Date & Time</span><span class="ecard-v">${e.date}</span></div>
+          <div class="ecard-row"><span class="ecard-k">Victory Reward</span><span class="ecard-v amber">₹${e.prize.toLocaleString()}</span></div>
+          <div class="ecard-row"><span class="ecard-k">Entry Cost</span><span class="ecard-v">₹${e.entry}</span></div>
+          <div class="ecard-row"><span class="ecard-k">Battle Time</span><span class="ecard-v">${e.date}</span></div>
         </div>
         <div class="ecard-foot">
-          <div class="slots-wrap"><div class="slots-txt">${e.taken}/${e.slots} slots</div>
-            <div class="slots-bar"><div class="slots-fill ${danger?'danger':''}" style="width:${pct}%"></div></div></div>
+          <div class="slots-wrap">
+            <div class="slots-txt">${e.taken}/${e.slots} warriors deployed</div>
+            <div class="slots-bar"><div class="slots-fill ${hot?'hot':''}" style="width:${pct}%"></div></div>
+          </div>
           <span class="badge ${sc[e.status]}">${sl[e.status]}</span>
         </div>
       </div></div>`;
@@ -662,96 +860,92 @@ function renderEvents(){
 }
 
 function renderWinners(){
-  document.getElementById('winners-grid').innerHTML = WINNERS_DATA.map(w=>`
+  document.getElementById('winners-grid').innerHTML=WINNERS_DATA.map(w=>`
     <div class="winner-card">
-      <div class="winner-pos">${w.pos}</div>
-      <div class="winner-event">${w.event}</div>
-      <div class="winner-name">${w.name}</div>
-      <div class="winner-ign">@${w.ign}</div>
+      <div class="w-rank">${w.pos}</div>
+      <div class="w-event">${w.event}</div>
+      <div class="w-name">${w.name}</div>
+      <div class="w-ign">◈ ${w.ign}</div>
       <div style="display:flex;align-items:baseline;gap:8px">
-        <span style="font-size:.75rem;color:var(--muted)">Won</span>
-        <span class="prize-amt">₹${w.prize.toLocaleString()}</span>
+        <span style="font-size:.7rem;color:var(--muted)">Claimed</span>
+        <span class="w-prize">₹${w.prize.toLocaleString()}</span>
       </div>
-      <div class="winner-date">${w.date} · 1st Place</div>
+      <div class="w-date">${w.date} · Victory</div>
     </div>`).join('');
 }
 
-/* ── AUTH ── */
-window.signupEmail = async function(){
+// Auth
+window.signupEmail=async function(){
   const name=v('su-name'),email=v('su-email'),pass=v('su-pass'),ign=v('su-ign'),uid=v('su-uid'),phone=v('su-phone');
-  if(!name||!email||!pass||!ign||!uid) return msg('su','error','Fill all required fields');
-  if(pass.length<6) return msg('su','error','Password must be 6+ characters');
+  if(!name||!email||!pass||!ign||!uid) return msg('su','err','Fill all required fields, warrior');
+  if(pass.length<6) return msg('su','err','Password must be 6+ characters');
   loading('su-txt',true);
   try{
     const c=await createUserWithEmailAndPassword(auth,email,pass);
     await updateProfile(c.user,{displayName:name});
     await setDoc(doc(db,'users',c.user.uid),{name,email,ign,pubgUid:uid,phone:'+91'+phone,wallet:0,createdAt:serverTimestamp()});
-    msg('su','ok','Account created! Welcome 🎮');
+    msg('su','ok','Enlisted! Welcome to the battlefield ⚔');
     setTimeout(()=>showPage('dashboard'),1200);
-  }catch(e){msg('su','error',fe(e.code));}
-  loading('su-txt',false,'Create Account');
+  }catch(e){msg('su','err',fe(e.code));}
+  loading('su-txt',false,'⚔ Join the Battle');
 }
 
-window.loginEmail = async function(){
+window.loginEmail=async function(){
   const email=v('lp-email'),pass=v('lp-pass');
-  if(!email||!pass) return msg('login','error','Enter email and password');
+  if(!email||!pass) return msg('login','err','Enter credentials, warrior');
   loading('lp-email-txt',true);
-  try{
-    await signInWithEmailAndPassword(auth,email,pass);
-    showPage('dashboard');
-  }catch(e){msg('login','error',fe(e.code));}
-  loading('lp-email-txt',false,'Login with Email');
+  try{await signInWithEmailAndPassword(auth,email,pass);showPage('dashboard');}
+  catch(e){msg('login','err',fe(e.code));}
+  loading('lp-email-txt',false,'Enter Arena');
 }
 
-window.loginGoogle = async function(){
+window.loginGoogle=async function(){
   try{
     const c=await signInWithPopup(auth,new GoogleAuthProvider());
     const ref=doc(db,'users',c.user.uid);
     if(!(await getDoc(ref)).exists())
       await setDoc(ref,{name:c.user.displayName||'',email:c.user.email,ign:'',pubgUid:'',phone:'',wallet:0,createdAt:serverTimestamp()});
     showPage('dashboard');
-  }catch(e){msg('login','error',fe(e.code));}
+  }catch(e){msg('login','err',fe(e.code));}
 }
 
-window.sendOTP = async function(){
+window.sendOTP=async function(){
   const phone=v('lp-phone');
-  if(phone.length!==10) return msg('login','error','Enter a valid 10-digit number');
-  loading('lp-send-txt',true,'white');
+  if(phone.length!==10) return msg('login','err','Enter valid 10-digit number');
+  loading('lp-send-txt',true);
   try{
     if(!window._rcv) window._rcv=new RecaptchaVerifier(auth,'recaptcha-container',{size:'invisible'});
     OTPResult=await signInWithPhoneNumber(auth,'+91'+phone,window._rcv);
     document.getElementById('lp-send-row').style.display='none';
     document.getElementById('lp-otp-row').style.display='block';
-    showToast('OTP sent to +91'+phone);
-  }catch(e){msg('login','error','OTP failed. Try email login.');}
+    showToast('OTP transmitted to +91'+phone);
+  }catch(e){msg('login','err','OTP failed. Use email login.');}
   loading('lp-send-txt',false,'Send OTP');
 }
 
-window.verifyOTP = async function(){
+window.verifyOTP=async function(){
   const otp=v('lp-otp');
-  if(!otp||otp.length!==6) return msg('login','error','Enter 6-digit OTP');
+  if(!otp||otp.length!==6) return msg('login','err','Enter 6-digit OTP');
   loading('lp-verify-txt',true);
   try{
     const c=await OTPResult.confirm(otp);
     const ref=doc(db,'users',c.user.uid);
     if(!(await getDoc(ref)).exists())
-      await setDoc(ref,{name:'Player',email:'',ign:'',pubgUid:'',phone:c.user.phoneNumber,wallet:0,createdAt:serverTimestamp()});
+      await setDoc(ref,{name:'Warrior',email:'',ign:'',pubgUid:'',phone:c.user.phoneNumber,wallet:0,createdAt:serverTimestamp()});
     showPage('dashboard');
-  }catch(e){msg('login','error','Wrong OTP. Try again.');}
-  loading('lp-verify-txt',false,'Verify OTP');
+  }catch(e){msg('login','err','Invalid OTP. Try again.');}
+  loading('lp-verify-txt',false,'Verify & Enter');
 }
 
-window.doSignOut = async function(){
-  await signOut(auth);
-  showPage('home');
-  showToast('Logged out');
+window.doSignOut=async function(){
+  await signOut(auth);showPage('home');showToast('Exited battlefield');
 }
 
-/* ── DASHBOARD ── */
+// Dashboard
 async function loadDash(u){
   const snap=await getDoc(doc(db,'users',u.uid));
   const d=snap.exists()?snap.data():{};
-  const name=d.name||u.displayName||'Player';
+  const name=d.name||u.displayName||'Warrior';
   document.getElementById('dash-name').textContent=name.split(' ')[0];
   document.getElementById('p-avatar').textContent=name.charAt(0).toUpperCase();
   document.getElementById('p-name').value=d.name||'';
@@ -776,73 +970,57 @@ async function loadRegs(uid){
     document.getElementById('d-paid').textContent='₹'+paid.toLocaleString();
     document.getElementById('d-won').textContent='₹'+won.toLocaleString();
     document.getElementById('d-rate').textContent=regs.length?Math.round(wins/regs.length*100)+'%':'0%';
-
     const fmt=ts=>ts?new Date(ts.toDate()).toLocaleDateString('en-IN'):'-';
-
-    // Registrations
     document.getElementById('reg-list').innerHTML=regs.length?`
-      <table class="history-table"><thead><tr><th>Event</th><th>Mode</th><th>Date</th><th>Entry</th><th>Status</th></tr></thead>
-      <tbody>${regs.map(r=>`<tr>
-        <td><strong>${r.eventName||'-'}</strong></td><td>${r.mode||'-'}</td>
-        <td>${fmt(r.createdAt)}</td><td>₹${r.entryFee||0}</td>
-        <td><span class="badge ${r.paymentStatus==='confirmed'?'badge-open':'badge-pending'}">${r.paymentStatus||'pending'}</span></td>
-      </tr>`).join('')}</tbody></table>`:empty('🎮','No Registrations Yet','Join a match to see history');
-
-    // Payments
+      <table class="htable"><thead><tr><th>Battle</th><th>Mode</th><th>Date</th><th>Entry</th><th>Status</th></tr></thead>
+      <tbody>${regs.map(r=>`<tr><td><strong>${r.eventName||'-'}</strong></td><td>${r.mode||'-'}</td><td>${fmt(r.createdAt)}</td><td>₹${r.entryFee||0}</td>
+        <td><span class="badge ${r.paymentStatus==='confirmed'?'b-open':'b-pending'}">${r.paymentStatus||'pending'}</span></td></tr>`).join('')}</tbody></table>`:
+      empty('🎮','No Battles Yet','Deploy to your first battle');
     document.getElementById('pay-list').innerHTML=regs.length?`
-      <table class="history-table"><thead><tr><th>Event</th><th>Amount</th><th>Date</th><th>Method</th><th>Status</th></tr></thead>
-      <tbody>${regs.map(r=>`<tr>
-        <td><strong>${r.eventName||'-'}</strong></td><td>₹${r.entryFee||0}</td>
-        <td>${fmt(r.createdAt)}</td><td>UPI</td>
-        <td><span class="badge ${r.paymentStatus==='confirmed'?'badge-open':'badge-pending'}">${r.paymentStatus||'pending'}</span></td>
-      </tr>`).join('')}</tbody></table>`:empty('💸','No Payments Yet','Your payment history will appear here');
-
-    // Results
+      <table class="htable"><thead><tr><th>Battle</th><th>Amount</th><th>Date</th><th>Status</th></tr></thead>
+      <tbody>${regs.map(r=>`<tr><td><strong>${r.eventName||'-'}</strong></td><td>₹${r.entryFee||0}</td><td>${fmt(r.createdAt)}</td>
+        <td><span class="badge ${r.paymentStatus==='confirmed'?'b-open':'b-pending'}">${r.paymentStatus||'pending'}</span></td></tr>`).join('')}</tbody></table>`:
+      empty('💸','No Payments','Entry payments will appear here');
     const fin=regs.filter(r=>r.result);
     document.getElementById('res-list').innerHTML=fin.length?`
-      <table class="history-table"><thead><tr><th>Event</th><th>Result</th><th>Position</th><th>Prize</th><th>Date</th></tr></thead>
-      <tbody>${fin.map(r=>`<tr>
-        <td><strong>${r.eventName||'-'}</strong></td>
-        <td><span class="badge ${r.result==='winner'?'badge-open':'badge-full'}">${r.result}</span></td>
-        <td>${r.position||'-'}</td><td style="color:var(--gold)">₹${r.prizeWon||0}</td>
-        <td>${fmt(r.createdAt)}</td>
-      </tr>`).join('')}</tbody></table>`:empty('🏆','No Results Yet','Match results appear here after events');
-
+      <table class="htable"><thead><tr><th>Battle</th><th>Result</th><th>Position</th><th>Reward</th></tr></thead>
+      <tbody>${fin.map(r=>`<tr><td><strong>${r.eventName||'-'}</strong></td>
+        <td><span class="badge ${r.result==='winner'?'b-open':'b-full'}">${r.result}</span></td>
+        <td>${r.position||'-'}</td><td style="color:var(--amber)">₹${r.prizeWon||0}</td></tr>`).join('')}</tbody></table>`:
+      empty('🏆','No Results Yet','Battle results appear after each event');
   }catch(e){console.error(e);}
 }
 
-window.saveProfile = async function(){
+window.saveProfile=async function(){
   if(!CU) return;
   try{
-    await updateDoc(doc(db,'users',CU.uid),{
-      name:v('p-name'),ign:v('p-ign'),pubgUid:v('p-uid'),phone:v('p-phone'),upiId:v('p-upi')
-    });
-    showToast('✅ Profile saved!');
+    await updateDoc(doc(db,'users',CU.uid),{name:v('p-name'),ign:v('p-ign'),pubgUid:v('p-uid'),phone:v('p-phone'),upiId:v('p-upi')});
+    showToast('✅ Profile updated!');
   }catch(e){showToast('Error saving profile');}
 }
 
-/* ── EVENT & REG ── */
-window.openEvent = function(id){
+// Events
+window.openEvent=function(id){
   CE=EVENTS.find(e=>e.id===id);
   if(!CE) return;
-  document.getElementById('ev-modal-title').textContent=CE.name;
-  const sc={open:'badge-open',full:'badge-full',soon:'badge-soon'};
-  const sl={open:'Open',full:'Full',soon:'Coming Soon'};
-  document.getElementById('ev-modal-body').innerHTML=`
-    <div class="modal-row"><span>Mode</span><span>${CE.mode}</span></div>
-    <div class="modal-row"><span>Prize Pool</span><span style="color:var(--gold)">₹${CE.prize.toLocaleString()}</span></div>
-    <div class="modal-row"><span>Entry Fee</span><span>₹${CE.entry}</span></div>
-    <div class="modal-row"><span>Date & Time</span><span>${CE.date}</span></div>
-    <div class="modal-row"><span>Slots</span><span>${CE.taken}/${CE.slots}</span></div>
+  const sc={open:'b-open',full:'b-full',soon:'b-soon'};
+  const sl={open:'Recruiting',full:'Full',soon:'Incoming'};
+  document.getElementById('ev-title').textContent=CE.name;
+  document.getElementById('ev-body').innerHTML=`
+    <div class="modal-row"><span>Combat Mode</span><span>${CE.mode}</span></div>
+    <div class="modal-row"><span>Victory Reward</span><span style="color:var(--amber)">₹${CE.prize.toLocaleString()}</span></div>
+    <div class="modal-row"><span>Entry Cost</span><span>₹${CE.entry}</span></div>
+    <div class="modal-row"><span>Battle Time</span><span>${CE.date}</span></div>
+    <div class="modal-row"><span>Warriors</span><span>${CE.taken}/${CE.slots}</span></div>
     <div class="modal-row"><span>Status</span><span class="badge ${sc[CE.status]}">${sl[CE.status]}</span></div>`;
   document.getElementById('ev-modal').classList.add('active');
 }
 
-window.openRegModal = function(){
+window.openRegModal=function(){
   if(!CE) return;
   if(!CU){closeModal('ev-modal');showPage('auth');return;}
-  if(CE.status==='full') return showToast('This event is full!');
-  if(CE.status==='soon') return showToast('Registration not open yet');
+  if(CE.status==='full') return showToast('Battle squad is full!');
+  if(CE.status==='soon') return showToast('Deployment not open yet');
   closeModal('ev-modal');
   getDoc(doc(db,'users',CU.uid)).then(s=>{
     if(s.exists()){const d=s.data();
@@ -857,13 +1035,10 @@ window.openRegModal = function(){
   document.getElementById('reg-modal').classList.add('active');
 }
 
-window.submitReg = async function(){
+window.submitReg=async function(){
   if(!CU||!CE) return;
   const ign=v('r-ign'),uid=v('r-uid'),phone=v('r-phone'),mode=v('r-mode');
-  if(!ign||!uid||!phone){
-    document.getElementById('reg-err').textContent='Fill all fields';
-    document.getElementById('reg-err').style.display='block'; return;
-  }
+  if(!ign||!uid||!phone){document.getElementById('reg-err').textContent='Fill all fields, warrior';document.getElementById('reg-err').style.display='block';return;}
   loading('r-btn',true);
   try{
     await addDoc(collection(db,'registrations'),{
@@ -874,60 +1049,40 @@ window.submitReg = async function(){
     document.getElementById('reg-form').style.display='none';
     document.getElementById('reg-done').style.display='block';
     await loadRegs(CU.uid);
-  }catch(e){
-    document.getElementById('reg-err').textContent='Registration failed. Try again.';
-    document.getElementById('reg-err').style.display='block';
-  }
-  loading('r-btn',false,'Confirm Registration');
+  }catch(e){document.getElementById('reg-err').textContent='Deployment failed. Retry.';document.getElementById('reg-err').style.display='block';}
+  loading('r-btn',false,'⚔ Confirm Deployment');
 }
 
-window.openWithdraw = function(){
+window.openWithdraw=function(){
   document.getElementById('wd-upi').value=document.getElementById('p-upi').value||'';
   document.getElementById('wd-modal').classList.add('active');
 }
 
-window.submitWithdraw = async function(){
-  const amt=document.getElementById('wd-amt').value;
-  const upi=v('wd-upi');
+window.submitWithdraw=async function(){
+  const amt=document.getElementById('wd-amt').value,upi=v('wd-upi');
   if(!amt||amt<100) return showToast('Minimum withdrawal ₹100');
-  if(!upi) return showToast('Enter your UPI ID');
+  if(!upi) return showToast('Enter UPI ID');
   try{
     await addDoc(collection(db,'withdrawals'),{userId:CU.uid,amount:Number(amt),upiId:upi,status:'pending',createdAt:serverTimestamp()});
-    closeModal('wd-modal');
-    showToast('✅ Withdrawal request submitted!');
+    closeModal('wd-modal');showToast('✅ Withdrawal request submitted!');
   }catch(e){showToast('Error. Try again.');}
 }
 
-/* ── HELPERS ── */
-function v(id){return document.getElementById(id).value.trim();}
-function empty(icon,title,sub){return `<div class="empty-state"><div class="empty-icon">${icon}</div><div class="empty-title">${title}</div><div class="empty-sub">${sub}</div></div>`;}
-function msg(form,type,text){const id=form==='login'?`login-${type==='error'?'err':'ok'}`:form==='su'?`su-${type==='error'?'err':'ok'}`:`${form}-${type==='error'?'err':'ok'}`;const el=document.getElementById(id);if(!el)return;el.textContent=text;el.style.display='block';setTimeout(()=>el.style.display='none',4000);}
-function loading(id,on,style='dark'){const el=document.getElementById(id);if(!el)return;if(on){el.innerHTML=`<span class="spin ${style==='white'?'spin-w':''}"></span>`;}};
-function fe(code){const m={'auth/email-already-in-use':'Email already registered.','auth/wrong-password':'Wrong password.','auth/user-not-found':'No account found with this email.','auth/invalid-email':'Invalid email.','auth/weak-password':'Password too weak.','auth/popup-closed-by-user':'Sign-in cancelled.','auth/too-many-requests':'Too many attempts. Try later.'};return m[code]||'Something went wrong.';}
+// Helpers
+function v(id){return document.getElementById(id)?.value?.trim()||'';}
+function empty(icon,title,sub){return `<div style="text-align:center;padding:60px 24px"><div style="font-size:3rem;margin-bottom:14px">${icon}</div><div style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">${title}</div><div style="font-size:.82rem;color:var(--dim)">${sub}</div></div>`;}
+function msg(form,type,text){const id=`${form}-${type}`;const el=document.getElementById(id);if(!el)return;el.textContent=text;el.style.display='block';setTimeout(()=>el.style.display='none',4000);}
+function loading(id,on){const el=document.getElementById(id);if(!el)return;if(on)el.innerHTML='<span class="spin spin-w"></span>';}
+function fe(code){const m={'auth/email-already-in-use':'Email already enlisted.','auth/wrong-password':'Wrong credentials.','auth/user-not-found':'Warrior not found.','auth/invalid-email':'Invalid email.','auth/weak-password':'Password too weak.','auth/popup-closed-by-user':'Login cancelled.'};return m[code]||'Mission failed. Retry.';}
 
-window.showPage = function(p){
-  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
-  document.getElementById('page-'+p).classList.add('active');
-  window.scrollTo(0,0);
-}
-window.switchAuthTab = function(t){
-  document.getElementById('auth-login').style.display=t==='login'?'block':'none';
-  document.getElementById('auth-signup').style.display=t==='signup'?'block':'none';
-  document.getElementById('tab-login').classList.toggle('active',t==='login');
-  document.getElementById('tab-signup').classList.toggle('active',t==='signup');
-}
-window.switchTab = function(t){
-  document.querySelectorAll('.dash-tab').forEach((x,i)=>{
-    x.classList.toggle('active',['registrations','payments','results','profile'][i]===t);
-  });
-  document.querySelectorAll('.dash-panel').forEach(x=>x.classList.remove('active'));
-  document.getElementById('tp-'+t).classList.add('active');
-}
-window.closeModal = function(id){document.getElementById(id).classList.remove('active');}
-window.showToast = function(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',3500);}
-window.gotoEvents = function(){showPage('home');setTimeout(()=>document.getElementById('events-sec').scrollIntoView({behavior:'smooth'}),100);}
-window.gotoHow = function(){showPage('home');setTimeout(()=>document.getElementById('how-sec').scrollIntoView({behavior:'smooth'}),100);}
-window.gotoWinners = function(){showPage('home');setTimeout(()=>document.getElementById('winners-sec').scrollIntoView({behavior:'smooth'}),100);}
+window.showPage=function(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');window.scrollTo(0,0);}
+window.switchAuthTab=function(t){document.getElementById('auth-login').style.display=t==='login'?'block':'none';document.getElementById('auth-signup').style.display=t==='signup'?'block':'none';document.getElementById('tab-login').classList.toggle('active',t==='login');document.getElementById('tab-signup').classList.toggle('active',t==='signup');}
+window.switchDTab=function(t){document.querySelectorAll('.dtab').forEach((x,i)=>x.classList.toggle('active',['reg','pay','res','profile'][i]===t));document.querySelectorAll('.dpanel').forEach(x=>x.classList.remove('active'));document.getElementById('dp-'+t).classList.add('active');}
+window.closeModal=function(id){document.getElementById(id).classList.remove('active');}
+window.showToast=function(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',3500);}
+window.gotoSection=function(id){showPage('home');setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});},100);}
+window.toggleMobileNav=function(){const n=document.getElementById('mobile-nav'),h=document.getElementById('hamburger');n.classList.toggle('open');h.classList.toggle('open');}
+window.closeMobileNav=function(){document.getElementById('mobile-nav').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}
 
 document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('active');}));
 </script>
