@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PUBG Battle – Real Money Match Events</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #f5c542;
+    --orange: #ff6a00;
+    --red: #e63946;
+    --dark: #0a0a0f;
+    --darker: #050508;
+    --card: #111118;
+    --border: #2a2a3a;
+    --text: #e0e0ef;
+    --muted: #8888aa;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–darker);
+color: var(–text);
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 16px;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* ANIMATED BG */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background:
+radial-gradient(ellipse at 20% 10%, rgba(255,106,0,0.08) 0%, transparent 50%),
+radial-gradient(ellipse at 80% 90%, rgba(230,57,70,0.07) 0%, transparent 50%),
+url(“data:image/svg+xml,%3Csvg width=‘60’ height=‘60’ viewBox=‘0 0 60 60’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cg fill=‘none’ fill-rule=‘evenodd’%3E%3Cg fill=’%23ffffff’ fill-opacity=‘0.015’%3E%3Cpath d=‘M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z’/%3E%3C/g%3E%3C/g%3E%3C/svg%3E”);
+pointer-events: none;
+z-index: 0;
+}
+
+/* NAV */
+nav {
+position: sticky;
+top: 0;
+z-index: 100;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 14px 24px;
+background: rgba(5,5,8,0.92);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid var(–border);
+}
+
+.logo {
+font-family: ‘Orbitron’, monospace;
+font-weight: 900;
+font-size: 1.3rem;
+letter-spacing: 2px;
+background: linear-gradient(135deg, var(–gold), var(–orange));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+
+.nav-links {
+display: flex;
+gap: 20px;
+list-style: none;
+}
+
+.nav-links a {
+color: var(–muted);
+text-decoration: none;
+font-weight: 600;
+font-size: 0.9rem;
+letter-spacing: 1px;
+text-transform: uppercase;
+transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(–gold); }
+
+/* HERO */
+.hero {
+position: relative;
+z-index: 1;
+text-align: center;
+padding: 80px 24px 60px;
+}
+
+.hero-badge {
+display: inline-block;
+padding: 6px 18px;
+background: rgba(245,197,66,0.1);
+border: 1px solid rgba(245,197,66,0.3);
+border-radius: 100px;
+color: var(–gold);
+font-size: 0.8rem;
+font-weight: 700;
+letter-spacing: 2px;
+text-transform: uppercase;
+margin-bottom: 24px;
+animation: pulse-border 2s infinite;
+}
+
+@keyframes pulse-border {
+0%, 100% { box-shadow: 0 0 0 0 rgba(245,197,66,0.2); }
+50% { box-shadow: 0 0 0 8px rgba(245,197,66,0); }
+}
+
+.hero h1 {
+font-family: ‘Orbitron’, monospace;
+font-size: clamp(2.2rem, 8vw, 5rem);
+font-weight: 900;
+line-height: 1.05;
+letter-spacing: -1px;
+margin-bottom: 8px;
+}
+
+.hero h1 span {
+background: linear-gradient(135deg, var(–gold) 0%, var(–orange) 50%, var(–red) 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+
+.hero-sub {
+font-size: clamp(1rem, 3vw, 1.3rem);
+color: var(–muted);
+margin: 16px auto 36px;
+max-width: 520px;
+font-weight: 400;
+line-height: 1.6;
+}
+
+.hero-cta {
+display: flex;
+gap: 14px;
+justify-content: center;
+flex-wrap: wrap;
+}
+
+.btn {
+display: inline-block;
+padding: 14px 32px;
+border-radius: 4px;
+font-family: ‘Rajdhani’, sans-serif;
+font-weight: 700;
+font-size: 1rem;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+cursor: pointer;
+text-decoration: none;
+border: none;
+transition: all 0.2s;
+}
+
+.btn-primary {
+background: linear-gradient(135deg, var(–gold), var(–orange));
+color: #000;
+box-shadow: 0 4px 24px rgba(255,106,0,0.35);
+}
+
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 32px rgba(255,106,0,0.5);
+}
+
+.btn-outline {
+background: transparent;
+color: var(–text);
+border: 1px solid var(–border);
+}
+
+.btn-outline:hover {
+border-color: var(–gold);
+color: var(–gold);
+}
+
+/* STATS BAR */
+.stats-bar {
+position: relative;
+z-index: 1;
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 0;
+margin: 0 24px 60px;
+border: 1px solid var(–border);
+border-radius: 8px;
+overflow: hidden;
+background: var(–card);
+}
+
+.stat {
+flex: 1;
+min-width: 120px;
+padding: 22px 20px;
+text-align: center;
+border-right: 1px solid var(–border);
+}
+
+.stat:last-child { border-right: none; }
+
+.stat-num {
+font-family: ‘Orbitron’, monospace;
+font-size: 1.6rem;
+font-weight: 700;
+color: var(–gold);
+display: block;
+}
+
+.stat-label {
+font-size: 0.78rem;
+color: var(–muted);
+text-transform: uppercase;
+letter-spacing: 1px;
+margin-top: 4px;
+}
+
+/* SECTIONS */
+section {
+position: relative;
+z-index: 1;
+padding: 48px 24px;
+max-width: 1100px;
+margin: 0 auto;
+}
+
+.section-header {
+display: flex;
+align-items: center;
+gap: 16px;
+margin-bottom: 32px;
+}
+
+.section-tag {
+font-family: ‘Orbitron’, monospace;
+font-size: 0.65rem;
+letter-spacing: 3px;
+color: var(–orange);
+text-transform: uppercase;
+background: rgba(255,106,0,0.08);
+border: 1px solid rgba(255,106,0,0.2);
+padding: 4px 10px;
+border-radius: 2px;
+}
+
+.section-title {
+font-family: ‘Orbitron’, monospace;
+font-size: clamp(1.3rem, 4vw, 2rem);
+font-weight: 700;
+letter-spacing: -0.5px;
+}
+
+/* EVENTS GRID */
+.events-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 20px;
+}
+
+.event-card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 8px;
+overflow: hidden;
+transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+cursor: pointer;
+}
+
+.event-card:hover {
+transform: translateY(-4px);
+border-color: rgba(245,197,66,0.3);
+box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+.event-card-top {
+height: 7px;
+background: linear-gradient(90deg, var(–gold), var(–orange));
+}
+
+.event-card-top.red { background: linear-gradient(90deg, var(–red), var(–orange)); }
+.event-card-top.blue { background: linear-gradient(90deg, #4361ee, #7209b7); }
+
+.event-card-body { padding: 20px; }
+
+.event-mode {
+font-size: 0.72rem;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–orange);
+font-weight: 700;
+margin-bottom: 8px;
+}
+
+.event-name {
+font-family: ‘Orbitron’, monospace;
+font-size: 1.05rem;
+font-weight: 700;
+margin-bottom: 12px;
+line-height: 1.3;
+}
+
+.event-info {
+display: flex;
+flex-direction: column;
+gap: 6px;
+margin-bottom: 18px;
+}
+
+.event-row {
+display: flex;
+justify-content: space-between;
+font-size: 0.88rem;
+}
+
+.event-row-label { color: var(–muted); }
+.event-row-value { color: var(–text); font-weight: 600; }
+.event-row-value.gold { color: var(–gold); }
+
+.event-footer {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-top: 14px;
+border-top: 1px solid var(–border);
+}
+
+.slots {
+font-size: 0.82rem;
+color: var(–muted);
+}
+
+.slots span { color: var(–text); font-weight: 700; }
+
+.badge {
+padding: 4px 10px;
+border-radius: 3px;
+font-size: 0.72rem;
+font-weight: 700;
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+
+.badge-open { background: rgba(0,220,100,0.12); color: #00dc64; border: 1px solid rgba(0,220,100,0.25); }
+.badge-full { background: rgba(230,57,70,0.12); color: var(–red); border: 1px solid rgba(230,57,70,0.25); }
+.badge-soon { background: rgba(245,197,66,0.12); color: var(–gold); border: 1px solid rgba(245,197,66,0.25); }
+
+/* HOW IT WORKS */
+.steps {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 24px;
+counter-reset: step;
+}
+
+.step {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 8px;
+padding: 28px 24px;
+position: relative;
+}
+
+.step-num {
+font-family: ‘Orbitron’, monospace;
+font-size: 2.5rem;
+font-weight: 900;
+color: rgba(245,197,66,0.12);
+line-height: 1;
+margin-bottom: 12px;
+}
+
+.step-title {
+font-family: ‘Orbitron’, monospace;
+font-size: 0.95rem;
+font-weight: 700;
+margin-bottom: 8px;
+color: var(–gold);
+}
+
+.step p {
+font-size: 0.9rem;
+color: var(–muted);
+line-height: 1.6;
+}
+
+/* REGISTER FORM */
+.form-card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 10px;
+padding: 36px 32px;
+max-width: 600px;
+margin: 0 auto;
+}
+
+.form-title {
+font-family: ‘Orbitron’, monospace;
+font-size: 1.4rem;
+font-weight: 700;
+margin-bottom: 8px;
+}
+
+.form-sub {
+color: var(–muted);
+font-size: 0.95rem;
+margin-bottom: 28px;
+}
+
+.form-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 16px;
+}
+
+@media (max-width: 500px) {
+.form-row { grid-template-columns: 1fr; }
+}
+
+.field {
+display: flex;
+flex-direction: column;
+gap: 6px;
+margin-bottom: 16px;
+}
+
+.field label {
+font-size: 0.8rem;
+letter-spacing: 1px;
+text-transform: uppercase;
+color: var(–muted);
+font-weight: 600;
+}
+
+.field input, .field select {
+background: rgba(255,255,255,0.04);
+border: 1px solid var(–border);
+border-radius: 4px;
+padding: 12px 14px;
+color: var(–text);
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 1rem;
+width: 100%;
+transition: border-color 0.2s;
+appearance: none;
+}
+
+.field input:focus, .field select:focus {
+outline: none;
+border-color: var(–gold);
+}
+
+.field input::placeholder { color: var(–muted); }
+
+.submit-btn {
+width: 100%;
+padding: 16px;
+background: linear-gradient(135deg, var(–gold), var(–orange));
+color: #000;
+font-family: ‘Orbitron’, monospace;
+font-weight: 700;
+font-size: 1rem;
+letter-spacing: 2px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+margin-top: 8px;
+transition: all 0.2s;
+}
+
+.submit-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 28px rgba(255,106,0,0.4);
+}
+
+/* FOOTER */
+footer {
+position: relative;
+z-index: 1;
+text-align: center;
+padding: 40px 24px;
+border-top: 1px solid var(–border);
+color: var(–muted);
+font-size: 0.88rem;
+}
+
+footer .logo { font-size: 1rem; margin-bottom: 12px; display: block; }
+
+/* MODAL */
+.modal-overlay {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.8);
+z-index: 200;
+justify-content: center;
+align-items: center;
+padding: 20px;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 12px;
+padding: 32px;
+max-width: 480px;
+width: 100%;
+position: relative;
+animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp {
+from { transform: translateY(30px); opacity: 0; }
+to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-close {
+position: absolute;
+top: 16px;
+right: 20px;
+background: none;
+border: none;
+color: var(–muted);
+font-size: 1.5rem;
+cursor: pointer;
+line-height: 1;
+}
+
+.modal h3 {
+font-family: ‘Orbitron’, monospace;
+font-size: 1.2rem;
+color: var(–gold);
+margin-bottom: 20px;
+}
+
+.modal-detail {
+display: flex;
+justify-content: space-between;
+padding: 10px 0;
+border-bottom: 1px solid var(–border);
+font-size: 0.95rem;
+}
+
+.modal-detail:last-of-type { border-bottom: none; }
+.modal-detail span:first-child { color: var(–muted); }
+.modal-detail span:last-child { font-weight: 600; }
+
+.toast {
+display: none;
+position: fixed;
+bottom: 32px;
+left: 50%;
+transform: translateX(-50%);
+background: var(–gold);
+color: #000;
+padding: 14px 28px;
+border-radius: 6px;
+font-weight: 700;
+font-size: 0.95rem;
+z-index: 300;
+animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@media (max-width: 600px) {
+nav { padding: 12px 16px; }
+.nav-links { display: none; }
+.stats-bar { flex-wrap: wrap; }
+.stat { min-width: 45%; border-right: none; border-bottom: 1px solid var(–border); }
+.form-card { padding: 24px 18px; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <div class="logo">⚔ PUBGBATTLE</div>
+  <ul class="nav-links">
+    <li><a href="#events">Events</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#join">Join Match</a></li>
+  </ul>
+  <a class="btn btn-primary" href="#join" style="padding:10px 20px;font-size:0.85rem;">Register Now</a>
+</nav>
+
+<!-- HERO -->
+
+<div class="hero">
+  <div class="hero-badge">🔥 Live Tournaments — Real Money Prizes</div>
+  <h1>COMPETE.<br><span>WIN REAL</span><br>MONEY.</h1>
+  <p class="hero-sub">Join daily PUBG Mobile match events. Pay entry, fight for the prize pool. Squads, duos & solo — all modes available.</p>
+  <div class="hero-cta">
+    <a href="#events" class="btn btn-primary">View Events</a>
+    <a href="#how" class="btn btn-outline">How It Works</a>
+  </div>
+</div>
+
+<!-- STATS -->
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num">₹2.4L+</span><span class="stat-label">Paid Out</span></div>
+  <div class="stat"><span class="stat-num">3,800+</span><span class="stat-label">Players</span></div>
+  <div class="stat"><span class="stat-num">240+</span><span class="stat-label">Matches</span></div>
+  <div class="stat"><span class="stat-num">Daily</span><span class="stat-label">Events</span></div>
+</div>
+
+<!-- EVENTS -->
+
+<section id="events">
+  <div class="section-header">
+    <span class="section-tag">Live & Upcoming</span>
+    <h2 class="section-title">Active Events</h2>
+  </div>
+  <div class="events-grid" id="events-grid">
+    <!-- Cards injected by JS -->
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+
+<section id="how">
+  <div class="section-header">
+    <span class="section-tag">Guide</span>
+    <h2 class="section-title">How It Works</h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Register</div>
+      <p>Fill in your PUBG ID, name and choose an event. Pay the entry fee via UPI or wallet.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Get Room ID</div>
+      <p>You receive the custom room ID & password on WhatsApp before match time.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Play & Win</div>
+      <p>Join the room, compete in the match. Results announced within 30 mins.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">Get Paid</div>
+      <p>Winners receive prize money directly to UPI / bank account within 24 hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN FORM -->
+
+<section id="join">
+  <div class="form-card">
+    <div class="form-title">Register for a Match</div>
+    <div class="form-sub">Fill in your details and we'll confirm your slot via WhatsApp.</div>
+
+```
+<div class="form-row">
+  <div class="field">
+    <label>Your Name</label>
+    <input type="text" id="f-name" placeholder="In-game name" />
+  </div>
+  <div class="field">
+    <label>PUBG UID</label>
+    <input type="text" id="f-uid" placeholder="e.g. 519230012" />
+  </div>
+</div>
+
+<div class="field">
+  <label>WhatsApp Number</label>
+  <input type="tel" id="f-phone" placeholder="+91 9000000000" />
+</div>
+
+<div class="form-row">
+  <div class="field">
+    <label>Select Event</label>
+    <select id="f-event">
+      <option value="">-- Choose Event --</option>
+      <option>Sunday Solo Showdown — ₹49 Entry</option>
+      <option>Squad War #14 — ₹99/Squad</option>
+      <option>Pro Duo Cup — ₹79/Duo</option>
+      <option>Late Night Grind — ₹29 Entry</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>Payment Mode</label>
+    <select id="f-pay">
+      <option>UPI</option>
+      <option>PhonePe</option>
+      <option>GPay</option>
+      <option>PayTM</option>
+    </select>
+  </div>
+</div>
+
+<button class="submit-btn" onclick="submitForm()">⚔ REGISTER & PAY ENTRY FEE</button>
+```
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <span class="logo">⚔ PUBGBATTLE</span>
+  <p>pubgbattle.online &nbsp;·&nbsp; Contact us on WhatsApp for support</p>
+  <p style="margin-top:8px;font-size:0.78rem;">© 2025 PUGBattle. For players 18+. Play responsibly.</p>
+</footer>
+
+<!-- MODAL -->
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h3 id="modal-title">Event Details</h3>
+    <div id="modal-body"></div>
+    <button class="btn btn-primary" style="width:100%;margin-top:20px;" onclick="closeModal();document.getElementById('join').scrollIntoView({behavior:'smooth'})">Register for This Event</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+
+<div class="toast" id="toast">✅ Registration submitted! We'll WhatsApp you soon.</div>
+
+<script>
+  const events = [
+    {
+      name: "Sunday Solo Showdown",
+      mode: "Solo · Erangel",
+      entry: "₹49",
+      prize: "₹2,000",
+      date: "Sun, 15 Dec · 8PM IST",
+      slots: 96,
+      taken: 72,
+      status: "open",
+      accent: ""
+    },
+    {
+      name: "Squad War #14",
+      mode: "Squad · Miramar",
+      entry: "₹99 / Squad",
+      prize: "₹5,000",
+      date: "Sat, 14 Dec · 7PM IST",
+      slots: 25,
+      taken: 25,
+      status: "full",
+      accent: "red"
+    },
+    {
+      name: "Pro Duo Cup",
+      mode: "Duo · Vikendi",
+      entry: "₹79 / Duo",
+      prize: "₹3,000",
+      date: "Mon, 16 Dec · 9PM IST",
+      slots: 50,
+      taken: 18,
+      status: "open",
+      accent: "blue"
+    },
+    {
+      name: "Late Night Grind",
+      mode: "Solo · Sanhok",
+      entry: "₹29",
+      prize: "₹1,000",
+      date: "Daily · 11PM IST",
+      slots: 64,
+      taken: 10,
+      status: "open",
+      accent: ""
+    },
+    {
+      name: "Weekend Warriors",
+      mode: "Squad · Erangel",
+      entry: "₹149 / Squad",
+      prize: "₹8,000",
+      date: "Sat, 21 Dec · 6PM IST",
+      slots: 20,
+      taken: 0,
+      status: "soon",
+      accent: "red"
+    },
+    {
+      name: "Flash Duo Match",
+      mode: "Duo · Livik",
+      entry: "₹49 / Duo",
+      prize: "₹1,500",
+      date: "Fri, 13 Dec · 10PM IST",
+      slots: 30,
+      taken: 28,
+      status: "open",
+      accent: "blue"
+    }
+  ];
+
+  const statusLabel = { open: "Open", full: "Full", soon: "Coming Soon" };
+  const statusClass = { open: "badge-open", full: "badge-full", soon: "badge-soon" };
+
+  function renderEvents() {
+    const grid = document.getElementById('events-grid');
+    grid.innerHTML = events.map((e, i) => `
+      <div class="event-card" onclick="openModal(${i})">
+        <div class="event-card-top ${e.accent}"></div>
+        <div class="event-card-body">
+          <div class="event-mode">${e.mode}</div>
+          <div class="event-name">${e.name}</div>
+          <div class="event-info">
+            <div class="event-row"><span class="event-row-label">Prize Pool</span><span class="event-row-value gold">${e.prize}</span></div>
+            <div class="event-row"><span class="event-row-label">Entry Fee</span><span class="event-row-value">${e.entry}</span></div>
+            <div class="event-row"><span class="event-row-label">Date & Time</span><span class="event-row-value">${e.date}</span></div>
+          </div>
+          <div class="event-footer">
+            <div class="slots">Slots: <span>${e.taken}/${e.slots}</span></div>
+            <span class="badge ${statusClass[e.status]}">${statusLabel[e.status]}</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function openModal(i) {
+    const e = events[i];
+    document.getElementById('modal-title').textContent = e.name;
+    document.getElementById('modal-body').innerHTML = `
+      <div class="modal-detail"><span>Mode</span><span>${e.mode}</span></div>
+      <div class="modal-detail"><span>Prize Pool</span><span style="color:var(--gold)">${e.prize}</span></div>
+      <div class="modal-detail"><span>Entry Fee</span><span>${e.entry}</span></div>
+      <div class="modal-detail"><span>Date & Time</span><span>${e.date}</span></div>
+      <div class="modal-detail"><span>Slots Filled</span><span>${e.taken} / ${e.slots}</span></div>
+      <div class="modal-detail"><span>Status</span><span class="badge ${statusClass[e.status]}" style="margin-left:auto">${statusLabel[e.status]}</span></div>
+    `;
+    document.getElementById('modal').classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+  }
+
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  function submitForm() {
+    const name = document.getElementById('f-name').value.trim();
+    const uid = document.getElementById('f-uid').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const event = document.getElementById('f-event').value;
+
+    if (!name || !uid || !phone || !event) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    const toast = document.getElementById('toast');
+    toast.style.display = 'block';
+    setTimeout(() => { toast.style.display = 'none'; }, 4000);
+
+    // Reset form
+    ['f-name','f-uid','f-phone'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('f-event').value = '';
+  }
+
+  renderEvents();
+</script>
+
+</body>
+</html>
